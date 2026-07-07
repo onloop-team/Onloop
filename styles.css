@@ -237,6 +237,10 @@ button {
   padding: 48px 0;
 }
 
+.products-section {
+  padding-top: 0;
+}
+
 .hero {
   display: grid;
   gap: 30px;
@@ -529,8 +533,19 @@ h3 {
   border: 0;
   border-radius: 0;
   background: rgba(251, 247, 240, 0.94);
-  padding: 8px 0 10px;
+  padding: 16px 0 10px;
   backdrop-filter: blur(14px);
+  isolation: isolate;
+}
+
+.basket-controls::before {
+  position: absolute;
+  inset: 0 50%;
+  z-index: -1;
+  width: 100vw;
+  margin-left: -50vw;
+  background: inherit;
+  content: "";
 }
 
 .product-scroll {
@@ -1362,10 +1377,6 @@ h3 {
 }
 
 @media (max-width: 979px) {
-  .products-section {
-    padding-top: 6px;
-  }
-
   .products-layout,
   .products-main {
     min-height: 0;
