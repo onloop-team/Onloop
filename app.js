@@ -51,19 +51,19 @@ const recurrenceOptions = [
 
 const onboardingSteps = [
   {
-    title: "Your home essentials, handled.",
+    title: "Choose essentials.",
     description:
-      "Choose the items you always need at home - toiletries, foodstuffs, baby items, beverages, pet food, and more.",
+      "Add the items your home needs regularly.",
   },
   {
-    title: "Pick your delivery rhythm.",
+    title: "Set your rhythm.",
     description:
-      "Set your order to repeat weekly, biweekly, or monthly. You can always adjust before delivery.",
+      "Pick one-time, weekly, biweekly, or monthly.",
   },
   {
-    title: "Send to WhatsApp.",
+    title: "Confirm on WhatsApp.",
     description:
-      "Review your bill and send your order to Loop on WhatsApp. We confirm availability, delivery, and payment with you directly.",
+      "We confirm availability, delivery, and payment.",
   },
 ];
 
@@ -144,7 +144,6 @@ const onboardingModal = document.querySelector("#onboardingModal");
 const onboardingProgress = document.querySelector("#onboardingProgress");
 const onboardingContent = document.querySelector("#onboardingContent");
 const startShoppingButton = document.querySelector("#startShoppingButton");
-const skipOnboardingButton = document.querySelector("#skipOnboardingButton");
 const skipOnboardingTop = document.querySelector("#skipOnboardingTop");
 
 const renderCategories = () => {
@@ -354,13 +353,10 @@ const renderOnboarding = () => {
 
   onboardingContent.innerHTML = `
     <div class="onboarding-glow" aria-hidden="true"></div>
-    <div class="onboarding-brand-row">
-      <span class="onboarding-mark">Loop</span>
-      <span class="onboarding-pill">Home restock made easy</span>
-    </div>
     <div class="onboarding-intro">
       <p class="eyebrow">Welcome to Loop</p>
-      <h2 id="onboardingTitle">Never run out of the things home needs.</h2>
+      <h2 id="onboardingTitle">Build your home restock basket.</h2>
+      <p>Pick what you need, choose a rhythm, and send it to WhatsApp.</p>
     </div>
     <div class="onboarding-list">
       ${onboardingSteps
@@ -601,7 +597,6 @@ startShoppingButton.addEventListener("click", () => {
   document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" });
 });
 
-skipOnboardingButton.addEventListener("click", softlyDismissOnboarding);
 skipOnboardingTop.addEventListener("click", softlyDismissOnboarding);
 
 onboardingModal.addEventListener("click", (event) => {

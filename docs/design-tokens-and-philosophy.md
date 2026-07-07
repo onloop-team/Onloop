@@ -99,6 +99,7 @@ Primary page background. Use for:
 
 - Body background.
 - Soft section backgrounds.
+- Slightly deeper cream footer backgrounds when a section needs quiet separation.
 - Review footer background.
 - Product image placeholders or light product surfaces.
 
@@ -124,7 +125,7 @@ Primary card and control surface. Use for:
 
 - Product cards.
 - Cart cards.
-- FAQ items.
+- Testimonial cards.
 - Modal panels.
 - Inputs and secondary buttons.
 
@@ -158,10 +159,18 @@ Use this for larger elevated surfaces such as the hero panel and mobile cart bar
 
 ### Font Stack
 
-The site uses Inter from Google Fonts with a system fallback:
+The site uses Inter for body text and Manrope for semantic headings, both from Google Fonts with system fallbacks:
 
 ```css
+body {
 font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 ```
 
 ### Type Philosophy
@@ -199,6 +208,8 @@ padding-bottom: 96px;
 ```
 
 At wider breakpoints, horizontal breathing room increases. At mobile breakpoints, the shell narrows to preserve usable content width.
+
+The homepage should keep at least 16px of side spacing on every viewport. Product/order pages may use tighter mobile spacing when the task surface needs more horizontal room.
 
 ### Section Spacing
 
@@ -271,7 +282,7 @@ Secondary and ghost buttons use white backgrounds, soft borders, and ink text.
 
 ## Cards and Surfaces
 
-Shared surface style applies to product cards, cart cards, FAQ details, onboarding cards, and review panels:
+Shared surface style applies to product cards, cart cards, testimonial cards, onboarding cards, and review panels:
 
 ```css
 border: 1px solid var(--border-soft);
@@ -284,7 +295,8 @@ box-shadow: 0 10px 28px rgba(31, 45, 45, 0.06);
 
 - Product cards should prioritize image, name, category/unit metadata, price, and quantity controls.
 - Cart cards should prioritize subtotal, service charge, delivery note, grand total, and review action.
-- FAQ cards should stay simple and readable.
+- Testimonial cards should stay short, credible, and easy to replace with verified quotes.
+- FAQ items should use simple dividers rather than heavy card surfaces.
 - Modal panels may have stronger elevation than ordinary cards because they sit above a backdrop.
 
 ## Product UI
@@ -305,7 +317,7 @@ Product card priorities:
 - Product images should be square and stable to prevent layout shift.
 - Badges should be short.
 - Quantity controls must stay easy to tap.
-- Product card layout should become compact horizontal rows on mobile.
+- Product card layout should stay as a compact two-column grid on mobile.
 - Avoid long descriptive copy inside product cards.
 
 ## Cart and Checkout UI
@@ -334,12 +346,9 @@ Visual elements:
 
 - Soft dark backdrop with amber warmth.
 - White/cream layered card.
-- Loop brand mark.
-- Compact explanatory pill.
 - Clear welcome heading.
 - Three step cards.
 - Primary `Start shopping` action.
-- Secondary `Skip for now` action.
 
 Behavioral principle:
 
@@ -352,7 +361,7 @@ Current CSS uses these major breakpoints:
 - `min-width: 700px`: wider page shell, desktop-capable hero grid, visible nav links.
 - `min-width: 980px`: larger section spacing, product layout with desktop cart.
 - `max-width: 979px`: mobile product browsing adjustments.
-- `max-width: 620px`: product cards become compact single-column rows.
+- `max-width: 620px`: product cards stay two columns with tighter card spacing and controls.
 - `max-width: 520px`: mobile review modal, full-width hero buttons, tighter sections.
 - `max-width: 430px`: tighter header, hero, product, mobile cart, and onboarding spacing.
 - `max-width: 370px`: extra compact product card controls.
@@ -468,5 +477,6 @@ This is acceptable for the current app size. If the interface grows, the next de
 
 - `styles.css`
 - `index.html`
+- `basket.html`
 - `app.js`
-- `docs/0001-loop-static-commerce-architecture.md`
+- `docs/loop-first-lauch-decision.md`

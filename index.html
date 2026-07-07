@@ -11,15 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon-32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="home-page">
     <div class="page-shell">
       <header class="site-header">
-        <a class="brand" href="#top" aria-label="Loop home">
+        <a class="brand" href="index.html#top" aria-label="Loop home">
           <img
             class="brand-logo"
             src="images/loop-logo-transparent.png"
@@ -28,19 +31,15 @@
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#how-it-works">How it works</a>
-          <a href="#products">Products</a>
+          <a href="basket.html">Products</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a class="nav-cta" href="#products">Start order</a>
+        <a class="nav-cta" href="basket.html">Start order</a>
       </header>
 
       <main id="top">
         <section class="hero section-pad">
           <div class="hero-copy">
-            <div class="hero-kicker">
-              <span>WhatsApp-first ordering</span>
-              <span>Recurring home restock</span>
-            </div>
             <p class="eyebrow">Home restock assistant</p>
             <h1>Your home essentials, on repeat.</h1>
             <p class="hero-subtitle">
@@ -49,7 +48,7 @@
               shopping stress.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#products"
+              <a class="button button-primary" href="basket.html"
                 >Start building my basket</a
               >
               <a class="button button-secondary" href="#how-it-works"
@@ -85,7 +84,7 @@
               </div>
               <div class="basket-total">
                 <span>Estimated total</span>
-                <strong>₦28,000</strong>
+                <strong>NGN 28,000</strong>
               </div>
             </div>
           </div>
@@ -121,46 +120,53 @@
           </div>
         </section>
 
-        <section class="section-pad products-section" id="products">
-          <div class="products-layout">
-            <div class="products-main">
-              <div class="basket-controls">
-                <div class="section-heading product-heading">
-                  <div>
-                    <p class="eyebrow">Build your basket</p>
-                    <h2>Pick the things your home always needs.</h2>
-                  </div>
-                  <p>
-                    Choose products, set quantities, then send the full basket to
-                    WhatsApp for confirmation.
-                  </p>
-                </div>
-
-                <label class="search-field" for="productSearch">
-                  <input
-                    id="productSearch"
-                    type="search"
-                    aria-label="Search products"
-                    placeholder="Search rice, baby wipes, detergent..."
-                    autocomplete="off"
-                  />
-                </label>
-
-                <div
-                  class="category-tabs"
-                  id="categoryTabs"
-                  aria-label="Product categories"
-                ></div>
+        <section class="section-pad testimonials-section" id="reviews">
+          <div class="section-heading">
+            <p class="eyebrow">Reviews</p>
+            <h2>Homes that restock with less stress.</h2>
+          </div>
+          <div class="testimonials-grid">
+            <article class="testimonial-card">
+              <div class="rating-row" aria-label="5 out of 5 stars">
+                <span aria-hidden="true">*****</span>
               </div>
-
-              <div class="product-scroll">
-                <div class="product-grid" id="productGrid"></div>
+              <p>
+                "Loop makes our monthly basics feel handled. I build the basket
+                once, send it on WhatsApp, and know what needs confirming."
+              </p>
+              <div class="testimonial-author">
+                <strong>Adaeze N.</strong>
+                <span>Family home, Lekki</span>
               </div>
-            </div>
+            </article>
 
-            <aside class="desktop-cart" aria-label="Cart summary">
-              <div id="desktopCart"></div>
-            </aside>
+            <article class="testimonial-card">
+              <div class="rating-row" aria-label="5 out of 5 stars">
+                <span aria-hidden="true">*****</span>
+              </div>
+              <p>
+                "The repeat order idea is exactly what we needed for toiletries,
+                cleaning supplies, and the everyday things we forget."
+              </p>
+              <div class="testimonial-author">
+                <strong>Tomi A.</strong>
+                <span>Shared apartment, Yaba</span>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="rating-row" aria-label="5 out of 5 stars">
+                <span aria-hidden="true">*****</span>
+              </div>
+              <p>
+                "I like that payment and delivery are confirmed before anything
+                is final. It feels simple, clear, and practical."
+              </p>
+              <div class="testimonial-author">
+                <strong>Chinwe O.</strong>
+                <span>Busy household, Surulere</span>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -221,109 +227,5 @@
         <p>Home essentials ordered online, confirmed on WhatsApp.</p>
       </footer>
     </div>
-
-    <div class="mobile-cart-bar" id="mobileCartBar"></div>
-
-    <div
-      class="modal-backdrop hidden"
-      id="onboardingModal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="onboardingTitle"
-    >
-      <div class="onboarding-card">
-        <button class="icon-button modal-close" id="skipOnboardingTop" aria-label="Close onboarding">
-          ×
-        </button>
-        <div class="onboarding-progress" id="onboardingProgress"></div>
-        <div id="onboardingContent"></div>
-        <div class="modal-actions">
-          <button class="button button-primary" id="startShoppingButton">
-            Start shopping
-          </button>
-          <button class="button button-ghost" id="skipOnboardingButton">
-            Skip for now
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal-backdrop hidden"
-      id="reviewModal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="reviewTitle"
-    >
-      <div class="review-panel">
-        <div class="review-header">
-          <div>
-            <p class="eyebrow">Order review</p>
-            <h2 id="reviewTitle">Review your basket</h2>
-          </div>
-          <button class="icon-button" id="closeReviewButton" aria-label="Close order review">
-            ×
-          </button>
-        </div>
-
-        <div class="review-body">
-          <section class="review-section">
-            <h3>Your items</h3>
-            <div id="reviewItems"></div>
-          </section>
-
-          <section class="review-section">
-            <h3>Delivery rhythm</h3>
-            <div class="recurrence-grid" id="recurrenceOptions"></div>
-          </section>
-
-          <section class="review-section">
-            <h3>Your details</h3>
-            <form class="checkout-form" id="checkoutForm" novalidate>
-              <label>
-                Full name
-                <input name="fullName" type="text" autocomplete="name" required />
-                <span class="field-error" data-error-for="fullName"></span>
-              </label>
-              <label>
-                Phone number
-                <input name="phone" type="tel" autocomplete="tel" required />
-                <span class="field-error" data-error-for="phone"></span>
-              </label>
-              <label>
-                Delivery area/location
-                <input name="deliveryArea" type="text" required />
-                <span class="field-error" data-error-for="deliveryArea"></span>
-              </label>
-              <label>
-                Full delivery address
-                <input name="address" type="text" />
-              </label>
-              <label>
-                Preferred delivery day
-                <input name="preferredDeliveryDay" type="text" placeholder="e.g. Saturday morning" />
-              </label>
-              <label class="form-wide">
-                Additional note
-                <textarea name="note" rows="3"></textarea>
-              </label>
-            </form>
-          </section>
-        </div>
-
-        <div class="review-footer">
-          <div>
-            <span>Grand total</span>
-            <strong id="reviewGrandTotal">₦0</strong>
-          </div>
-          <button class="button button-primary" id="checkoutButton">
-            Checkout on WhatsApp
-          </button>
-          <p class="form-error" id="checkoutError" aria-live="polite"></p>
-        </div>
-      </div>
-    </div>
-
-    <script src="app.js"></script>
   </body>
 </html>

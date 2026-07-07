@@ -16,9 +16,10 @@ Loop website maintainers
 
 Loop is a lightweight home essentials ordering website. The current product experience lets customers browse household items, build a basket, choose a delivery rhythm, review order details, and send the completed order to Loop through WhatsApp for manual confirmation.
 
-The website is implemented as a static frontend with three primary files:
+The website is implemented as a static frontend with four primary files:
 
-- `index.html` defines the document structure, sections, modal containers, forms, and script/style entry points.
+- `index.html` defines the informational home page, including hero, how-it-works, FAQ, and links into ordering.
+- `basket.html` defines the ordering page, including product browsing, cart, onboarding, review, checkout form, and script entry point.
 - `styles.css` defines responsive layout, brand presentation, product cards, carts, modals, forms, and mobile behavior.
 - `app.js` owns product data, UI state, rendering, validation, onboarding persistence, basket logic, pricing, and WhatsApp handoff.
 
@@ -30,12 +31,12 @@ The business flow is intentionally WhatsApp-first. The website collects enough i
 
 Use a static HTML, CSS, and vanilla JavaScript architecture for the current Loop website.
 
-Keep product catalog data, cart state, pricing calculations, recurrence selection, onboarding logic, checkout validation, and WhatsApp message construction in `app.js`.
+Keep product catalog data, cart state, pricing calculations, recurrence selection, onboarding logic, checkout validation, and WhatsApp message construction in `app.js`, loaded only by `basket.html`.
 
 Keep persistent browser state limited to onboarding localStorage values:
 
 - `loop_has_seen_onboarding`: set to `true` only when the customer clicks `Start shopping`.
-- `loop_onboarding_close_count`: incremented when the customer dismisses onboarding through X, backdrop, Escape, or `Skip for now`.
+- `loop_onboarding_close_count`: incremented when the customer dismisses onboarding through X, backdrop, or Escape.
 
 Keep cart state in memory only. Do not persist basket contents across reloads yet.
 
@@ -66,35 +67,40 @@ Use static image assets under `images/` for the brand mark and product visuals. 
 ## Current User Flow
 
 1. Customer lands on the homepage.
-2. If eligible, customer sees the onboarding modal.
-3. Customer clicks `Start shopping` or dismisses onboarding.
-4. Customer browses products by category or search.
-5. Customer adjusts product quantities.
-6. Cart summary updates with subtotal, 6 percent service charge, grand total, and minimum order validation.
-7. Customer opens the order review modal.
-8. Customer chooses recurrence: one-time, weekly, biweekly, or monthly.
-9. Customer enters required details: full name, phone number, and delivery area.
-10. Customer optionally adds full address, preferred delivery day, and notes.
-11. Customer clicks `Checkout on WhatsApp`.
-12. The browser opens WhatsApp with a prefilled structured order message.
+2. Customer follows a CTA to `basket.html`.
+3. If eligible, customer sees the onboarding modal on the basket page.
+4. Customer clicks `Start shopping` or dismisses onboarding.
+5. Customer browses products by category or search.
+6. Customer adjusts product quantities.
+7. Cart summary updates with subtotal, 6 percent service charge, grand total, and minimum order validation.
+8. Customer opens the order review modal.
+9. Customer chooses recurrence: one-time, weekly, biweekly, or monthly.
+10. Customer enters required details: full name, phone number, and delivery area.
+11. Customer optionally adds full address, preferred delivery day, and notes.
+12. Customer clicks `Checkout on WhatsApp`.
+13. The browser opens WhatsApp with a prefilled structured order message.
 
 ## Architecture Details
 
 ### Document Structure
 
-`index.html` contains the semantic page shell:
+`index.html` contains the semantic home page:
 
 - Sticky header with logo, navigation links, and primary CTA.
 - Hero section explaining the Loop value proposition.
 - How-it-works section.
-- Product section containing search, category tabs, product grid, and desktop cart.
 - FAQ section.
 - Footer.
+
+`basket.html` contains the ordering experience:
+
+- Sticky header with links back to home sections.
+- Product section containing search, category tabs, product grid, and desktop cart.
 - Mobile cart bar.
 - Onboarding modal.
 - Review and checkout modal.
 
-The page intentionally keeps modal shells in HTML while allowing JavaScript to render dynamic content inside them.
+The basket page intentionally keeps modal shells in HTML while allowing JavaScript to render dynamic content inside them.
 
 ### Styling
 
@@ -107,7 +113,7 @@ The page intentionally keeps modal shells in HTML while allowing JavaScript to r
 - Onboarding modal polish and mobile fit.
 - Accessible focus states.
 
-The design avoids requiring a CSS framework. This keeps page weight low and avoids introducing build tooling for a single-page static experience.
+The design avoids requiring a CSS framework. This keeps page weight low and avoids introducing build tooling for a small static multi-page experience.
 
 ### JavaScript State
 
@@ -210,7 +216,7 @@ The accepted persistence rules are:
 
 - Show onboarding when `loop_has_seen_onboarding` is not `true` and `loop_onboarding_close_count` is less than `3`.
 - Set `loop_has_seen_onboarding=true` only when the customer clicks `Start shopping`.
-- Increment `loop_onboarding_close_count` for X, backdrop click, Escape, and `Skip for now`.
+- Increment `loop_onboarding_close_count` for X, backdrop click, and Escape.
 - Stop showing onboarding after 3 soft dismissals.
 
 This gives customers multiple chances to understand the service while respecting repeated dismissal intent.
@@ -283,6 +289,7 @@ The website can be deployed to any static hosting provider.
 Minimum deployment artifact:
 
 - `index.html`
+- `basket.html`
 - `styles.css`
 - `app.js`
 - `images/`
@@ -298,6 +305,7 @@ Then open:
 
 ```text
 http://127.0.0.1:4173/
+http://127.0.0.1:4173/basket.html
 ```
 
 ## Alternatives Considered
@@ -381,10 +389,12 @@ Future ADRs should cover:
 Current verification should include:
 
 - `node --check app.js`
-- Static page loads over local HTTP with status `200`.
-- Onboarding appears for first eligible visit.
+- Home page loads over local HTTP with status `200`.
+- Basket page loads over local HTTP with status `200`.
+- Home page CTAs navigate to `basket.html`.
+- Onboarding appears for first eligible visit on `basket.html`.
 - `Start shopping` sets `loop_has_seen_onboarding=true`, closes the modal, and scrolls to products.
-- X, backdrop, Escape, and `Skip for now` increment `loop_onboarding_close_count`.
+- X, backdrop, and Escape increment `loop_onboarding_close_count`.
 - Onboarding reappears after 1 or 2 soft dismissals.
 - Onboarding stops appearing after 3 soft dismissals.
 - Products render with images and prices.
@@ -399,6 +409,7 @@ Current verification should include:
 ## References
 
 - `index.html`
+- `basket.html`
 - `styles.css`
 - `app.js`
 - `images/`
