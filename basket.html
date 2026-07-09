@@ -81,6 +81,16 @@
                 ></div>
               </div>
 
+              <section class="bundle-section" aria-labelledby="bundleTitle">
+                <div class="bundle-heading">
+                  <div>
+                    <h2 id="bundleTitle">Quick Bundles</h2>
+                  </div>
+                  <p>Add a bundle, then adjust.</p>
+                </div>
+                <div class="bundle-grid" id="bundleGrid"></div>
+              </section>
+
               <div class="product-scroll">
                 <div class="product-grid" id="productGrid"></div>
               </div>
@@ -141,8 +151,14 @@
             <p class="eyebrow">Order review</p>
             <h2 id="reviewTitle">Review your basket</h2>
           </div>
-          <button class="icon-button" id="closeReviewButton" aria-label="Close order review">
-            x
+          <button class="icon-button review-back-button" id="closeReviewButton" aria-label="Back to basket">
+            <span class="review-back-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M15 18 9 12l6-6" />
+              </svg>
+            </span>
+            <span class="review-back-label">Back</span>
+            <span class="review-close-icon" aria-hidden="true">x</span>
           </button>
         </div>
 
