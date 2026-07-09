@@ -42,6 +42,56 @@ const products = [
   image: `images/products/${product.id}.png`,
 }));
 
+const bundles = [
+  {
+    id: "foodstuff-package",
+    name: "Foodstuff Package",
+    accent: "Pantry",
+    icon: "basket",
+    items: [
+      { productId: "rice", quantity: 1 },
+      { productId: "spaghetti-pack", quantity: 1 },
+      { productId: "vegetable-oil", quantity: 1 },
+      { productId: "garri", quantity: 1 },
+    ],
+  },
+  {
+    id: "toiletries-package",
+    name: "Toiletries Package",
+    accent: "Bathroom",
+    icon: "droplet",
+    items: [
+      { productId: "toilet-tissue-pack", quantity: 1 },
+      { productId: "bathing-soap-pack", quantity: 1 },
+      { productId: "toothpaste", quantity: 2 },
+      { productId: "sanitary-pads", quantity: 1 },
+    ],
+  },
+  {
+    id: "skincare-package",
+    name: "Skincare Package",
+    accent: "Care",
+    icon: "sparkle",
+    items: [
+      { productId: "body-cream", quantity: 1 },
+      { productId: "bathing-soap-pack", quantity: 1 },
+      { productId: "toothpaste", quantity: 1 },
+    ],
+  },
+  {
+    id: "cleaning-package",
+    name: "Cleaning Package",
+    accent: "Cleaning",
+    icon: "spray",
+    items: [
+      { productId: "detergent", quantity: 1 },
+      { productId: "dishwashing-liquid", quantity: 1 },
+      { productId: "bleach", quantity: 1 },
+      { productId: "disinfectant", quantity: 1 },
+    ],
+  },
+];
+
 const recurrenceOptions = [
   { value: "One-time order", title: "One-time order", text: "Just this order for now." },
   { value: "Weekly", title: "Weekly", text: "Best for fast-moving essentials." },
@@ -81,6 +131,9 @@ const formatNaira = (amount) =>
     maximumFractionDigits: 0,
   }).format(amount);
 
+const getProductById = (productId) =>
+  products.find((product) => product.id === productId);
+
 const getCartItem = (productId) =>
   state.cart.find((item) => item.productId === productId);
 
@@ -100,6 +153,51 @@ const isBelowMinimumOrder = () =>
 const getMinimumOrderMessage = () =>
   `Minimum order is ${formatNaira(MINIMUM_ORDER_AMOUNT)}. Please add more items to continue.`;
 
+const getBundleTotal = (bundle) =>
+  bundle.items.reduce((total, bundleItem) => {
+    const product = getProductById(bundleItem.productId);
+    return product ? total + product.price * bundleItem.quantity : total;
+  }, 0);
+
+const getBundleItemCount = (bundle) =>
+  bundle.items.reduce((total, bundleItem) => total + bundleItem.quantity, 0);
+
+const getBundleIcon = (icon) => {
+  const icons = {
+    basket: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5.5 10.5h13l-1.1 8.1a2 2 0 0 1-2 1.7H8.6a2 2 0 0 1-2-1.7l-1.1-8.1Z"></path>
+        <path d="M8.5 10.5 11 4.8"></path>
+        <path d="m15.5 10.5-2.5-5.7"></path>
+        <path d="M4 10.5h16"></path>
+      </svg>
+    `,
+    droplet: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3.8S6.8 10 6.8 14.2a5.2 5.2 0 0 0 10.4 0C17.2 10 12 3.8 12 3.8Z"></path>
+        <path d="M9.7 15.2a2.6 2.6 0 0 0 3.9 1.9"></path>
+      </svg>
+    `,
+    sparkle: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3.8 13.8 9l5.4 1.8-5.4 1.8L12 17.8l-1.8-5.2-5.4-1.8L10.2 9 12 3.8Z"></path>
+        <path d="M18 15.5 18.8 18l2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8.8-2.5Z"></path>
+      </svg>
+    `,
+    spray: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 9h7v2.2l-1.3 1.4v6.1a1.8 1.8 0 0 1-1.8 1.8H9.8A1.8 1.8 0 0 1 8 18.7v-6.1l1-1.2V9Z"></path>
+        <path d="M10 5.2h5.2V9H10z"></path>
+        <path d="M15.2 6h2.4"></path>
+        <path d="M18.8 8.2h1.7"></path>
+        <path d="M18.8 11h1.7"></path>
+      </svg>
+    `,
+  };
+
+  return icons[icon] || icons.basket;
+};
+
 const updateProductCardState = (productId) => {
   const card = productGrid.querySelector(`[data-product-card="${productId}"]`);
   if (!card) return;
@@ -113,7 +211,7 @@ const updateProductCardState = (productId) => {
 };
 
 const setQuantity = (productId, quantity) => {
-  const product = products.find((item) => item.id === productId);
+  const product = getProductById(productId);
   if (!product) return;
 
   const nextQuantity = Math.max(0, quantity);
@@ -139,10 +237,21 @@ const setQuantity = (productId, quantity) => {
   renderReview();
 };
 
+const addBundleToCart = (bundleId) => {
+  const bundle = bundles.find((item) => item.id === bundleId);
+  if (!bundle) return;
+
+  bundle.items.forEach((bundleItem) => {
+    const currentQuantity = getCartItem(bundleItem.productId)?.quantity || 0;
+    setQuantity(bundleItem.productId, currentQuantity + bundleItem.quantity);
+  });
+};
+
 const categories = ["All", ...new Set(products.map((product) => product.category))];
 
 const categoryTabs = document.querySelector("#categoryTabs");
 const productSearch = document.querySelector("#productSearch");
+const bundleGrid = document.querySelector("#bundleGrid");
 const productGrid = document.querySelector("#productGrid");
 const desktopCart = document.querySelector("#desktopCart");
 const mobileCartBar = document.querySelector("#mobileCartBar");
@@ -172,6 +281,44 @@ const renderCategories = () => {
         </button>
       `
     )
+    .join("");
+};
+
+const renderBundles = () => {
+  bundleGrid.innerHTML = bundles
+    .map((bundle) => {
+      const total = getBundleTotal(bundle);
+      const itemCount = getBundleItemCount(bundle);
+      const preview = bundle.items
+        .map((bundleItem) => {
+          const product = getProductById(bundleItem.productId);
+          return product ? `${product.name} x${bundleItem.quantity}` : "";
+        })
+        .filter(Boolean)
+        .join(", ");
+
+      return `
+        <article class="bundle-card">
+          <div class="bundle-card-top">
+            <span class="bundle-mark" aria-hidden="true">${getBundleIcon(bundle.icon)}</span>
+            <div>
+              <span class="bundle-accent">${bundle.accent}</span>
+              <strong>${formatNaira(total)}</strong>
+            </div>
+          </div>
+          <div class="bundle-copy">
+            <h3>${bundle.name}</h3>
+          </div>
+          <p class="bundle-preview">${preview}</p>
+          <div class="bundle-card-footer">
+            <span>${itemCount} item${itemCount === 1 ? "" : "s"}</span>
+            <button class="button bundle-button" type="button" data-bundle-id="${bundle.id}">
+              Add bundle
+            </button>
+          </div>
+        </article>
+      `;
+    })
     .join("");
 };
 
@@ -239,6 +386,7 @@ const renderCartSummary = () => {
   const minimumOrderMarkup = isBelowMinimumOrder()
     ? `<p class="minimum-order-note">${getMinimumOrderMessage()}</p>`
     : "";
+
   const itemsMarkup = state.cart.length
     ? `<div class="cart-items">
         ${state.cart
@@ -392,6 +540,7 @@ const renderOnboarding = () => {
 
 const render = () => {
   renderCategories();
+  renderBundles();
   renderProducts();
   renderCartSummary();
   renderReview();
@@ -569,6 +718,11 @@ productSearch.addEventListener("input", (event) => {
 });
 
 document.addEventListener("click", (event) => {
+  const bundleButton = event.target.closest("[data-bundle-id]");
+  if (bundleButton) {
+    addBundleToCart(bundleButton.dataset.bundleId);
+  }
+
   const quantityButton = event.target.closest("[data-action]");
   if (quantityButton) {
     const productId = quantityButton.dataset.productId;
