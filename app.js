@@ -5,41 +5,14 @@ const ONBOARDING_CLOSE_LIMIT = 3;
 const MINIMUM_ORDER_AMOUNT = 20000;
 const SERVICE_CHARGE_RATE = 0.06;
 
-const products = [
-  { id: "toilet-tissue-pack", name: "Toilet Tissue Pack", category: "Toiletries", unit: "12 rolls", price: 6500, badge: "Monthly essential" },
-  { id: "bathing-soap-pack", name: "Bathing Soap Pack", category: "Toiletries", unit: "6 pieces", price: 4200 },
-  { id: "toothpaste", name: "Toothpaste", category: "Toiletries", unit: "140g", price: 2500 },
-  { id: "body-cream", name: "Body Cream", category: "Toiletries", unit: "400ml", price: 5800 },
-  { id: "sanitary-pads", name: "Sanitary Pads", category: "Toiletries", unit: "Pack", price: 3500 },
-  { id: "rice", name: "Rice", category: "Foodstuffs", unit: "5kg", price: 9500, badge: "Popular" },
-  { id: "spaghetti-pack", name: "Spaghetti Pack", category: "Foodstuffs", unit: "10 pieces", price: 8000 },
-  { id: "vegetable-oil", name: "Vegetable Oil", category: "Foodstuffs", unit: "3L", price: 7800 },
-  { id: "noodles-carton", name: "Noodles Carton", category: "Foodstuffs", unit: "40 pieces", price: 9800, badge: "Family pick" },
-  { id: "garri", name: "Garri", category: "Foodstuffs", unit: "5kg", price: 5500 },
-  { id: "baby-cereal", name: "Baby Cereal", category: "Baby Food", unit: "400g", price: 6700 },
-  { id: "baby-wipes", name: "Baby Wipes", category: "Baby Food", unit: "Pack", price: 3000 },
-  { id: "diapers", name: "Diapers", category: "Baby Food", unit: "Medium Pack", price: 9500, badge: "Family pick" },
-  { id: "baby-lotion", name: "Baby Lotion", category: "Baby Food", unit: "300ml", price: 4500 },
-  { id: "dry-dog-food", name: "Dry Dog Food", category: "Dog Food", unit: "3kg", price: 12000, badge: "Popular" },
-  { id: "dog-treats", name: "Dog Treats", category: "Dog Food", unit: "Pack", price: 3500 },
-  { id: "pet-shampoo", name: "Pet Shampoo", category: "Dog Food", unit: "500ml", price: 4800 },
-  { id: "bottled-water", name: "Bottled Water", category: "Beverages", unit: "12 bottles", price: 2800 },
-  { id: "malt-drink-pack", name: "Malt Drink Pack", category: "Beverages", unit: "6 cans", price: 4500 },
-  { id: "tea-pack", name: "Tea Pack", category: "Beverages", unit: "50 bags", price: 3200 },
-  { id: "coffee", name: "Coffee", category: "Beverages", unit: "100g", price: 4700 },
-  { id: "milk-refill", name: "Milk Refill", category: "Beverages", unit: "400g", price: 5000, badge: "Monthly essential" },
-  { id: "detergent", name: "Detergent", category: "Cleaning Supplies", unit: "2kg", price: 5500 },
-  { id: "dishwashing-liquid", name: "Dishwashing Liquid", category: "Cleaning Supplies", unit: "750ml", price: 2700 },
-  { id: "bleach", name: "Bleach", category: "Cleaning Supplies", unit: "1L", price: 1800 },
-  { id: "disinfectant", name: "Disinfectant", category: "Cleaning Supplies", unit: "1L", price: 3200 },
-  { id: "mop-refill", name: "Mop Refill", category: "Cleaning Supplies", unit: "1 piece", price: 2500 },
-  { id: "light-bulb", name: "Light Bulb", category: "Other Home Essentials", unit: "2 pieces", price: 3000 },
-  { id: "trash-bags", name: "Trash Bags", category: "Other Home Essentials", unit: "Roll", price: 2200 },
-  { id: "kitchen-foil", name: "Kitchen Foil", category: "Other Home Essentials", unit: "Roll", price: 2000 },
-  { id: "insecticide", name: "Insecticide", category: "Other Home Essentials", unit: "300ml", price: 2800 },
-].map((product) => ({
+const catalogProducts = Array.isArray(window.LOOP_CATALOG_PRODUCTS)
+  ? window.LOOP_CATALOG_PRODUCTS
+  : [];
+
+const products = catalogProducts.map((product) => ({
   ...product,
-  image: `images/products/${product.id}.png`,
+  brand: product.brand || "",
+  subcategory: product.subcategory || "",
 }));
 
 const bundles = [
@@ -49,10 +22,10 @@ const bundles = [
     accent: "Pantry",
     icon: "basket",
     items: [
-      { productId: "rice", quantity: 1 },
-      { productId: "spaghetti-pack", quantity: 1 },
-      { productId: "vegetable-oil", quantity: 1 },
-      { productId: "garri", quantity: 1 },
+      { productId: "caprice-parboiled-rice-5kg", quantity: 1 },
+      { productId: "golden-penny-spaghetti-500g", quantity: 2 },
+      { productId: "power-oil-vegetable-oil-3l", quantity: 1 },
+      { productId: "golden-penny-semovita-1kg", quantity: 1 },
     ],
   },
   {
@@ -61,10 +34,10 @@ const bundles = [
     accent: "Bathroom",
     icon: "droplet",
     items: [
-      { productId: "toilet-tissue-pack", quantity: 1 },
-      { productId: "bathing-soap-pack", quantity: 1 },
-      { productId: "toothpaste", quantity: 2 },
-      { productId: "sanitary-pads", quantity: 1 },
+      { productId: "familia-toilet-tissue-classic-natural-whiteness-12-rolls", quantity: 1 },
+      { productId: "dettol-original-antibacterial-soap-110g-x-6", quantity: 1 },
+      { productId: "closeup-toothpaste-deep-action-140g", quantity: 2 },
+      { productId: "always-ultra-sanitary-pads-8-pads", quantity: 1 },
     ],
   },
   {
@@ -73,9 +46,9 @@ const bundles = [
     accent: "Care",
     icon: "sparkle",
     items: [
-      { productId: "body-cream", quantity: 1 },
-      { productId: "bathing-soap-pack", quantity: 1 },
-      { productId: "toothpaste", quantity: 1 },
+      { productId: "nivea-rich-nourishing-body-lotion-400ml", quantity: 1 },
+      { productId: "simple-hydrating-light-moisturiser-125ml", quantity: 1 },
+      { productId: "garnier-micellar-cleansing-water-400ml", quantity: 1 },
     ],
   },
   {
@@ -84,10 +57,10 @@ const bundles = [
     accent: "Cleaning",
     icon: "spray",
     items: [
-      { productId: "detergent", quantity: 1 },
-      { productId: "dishwashing-liquid", quantity: 1 },
-      { productId: "bleach", quantity: 1 },
-      { productId: "disinfectant", quantity: 1 },
+      { productId: "good-mama-detergent-assorted-1-7kg", quantity: 1 },
+      { productId: "morning-fresh-dishwashing-liquid-450ml", quantity: 1 },
+      { productId: "hypo-bleach-regular-3-5l", quantity: 1 },
+      { productId: "dettol-antiseptic-liquid-500ml", quantity: 1 },
     ],
   },
 ];
@@ -328,7 +301,7 @@ const renderProducts = () => {
     const matchesCategory =
       state.selectedCategory === "All" ||
       product.category === state.selectedCategory;
-    const searchableText = `${product.name} ${product.category} ${product.unit}`.toLowerCase();
+    const searchableText = `${product.name} ${product.brand} ${product.category} ${product.subcategory} ${product.unit}`.toLowerCase();
     const matchesSearch = !query || searchableText.includes(query);
 
     return matchesCategory && matchesSearch;

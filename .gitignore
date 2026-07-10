@@ -1,0 +1,9 @@
+.deps/
+__pycache__/
+scripts/__pycache__/
+image-download-failures.csv
+loop_300_product_catalog*.xlsx
+loop_300_product_catalog.backup-*.xlsx
+loop_300_product_catalog.before-image-copy-*.xlsx
+loop_300_product_catalog_with_images.xlsx
+~$*.xlsx
