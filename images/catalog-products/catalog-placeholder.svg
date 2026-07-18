@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Loop catalog placeholder</title>
+  <desc id="desc">Placeholder artwork for catalog products that do not yet have dedicated images.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5efe4" />
+      <stop offset="55%" stop-color="#d9efe9" />
+      <stop offset="100%" stop-color="#f2cfa0" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#fbf7f0" stop-opacity="0.98" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)" />
+  <circle cx="520" cy="136" r="88" fill="#f2994a" fill-opacity="0.18" />
+  <circle cx="120" cy="540" r="120" fill="#0d6e6e" fill-opacity="0.12" />
+  <rect x="72" y="92" width="496" height="456" rx="40" fill="url(#card)" stroke="#d8e7e2" stroke-width="3" />
+  <rect x="112" y="136" width="120" height="120" rx="28" fill="#0d6e6e" />
+  <path d="M146 183h52m-52 32h92m-92 32h92" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="14" />
+  <text x="112" y="320" fill="#1f2d2d" font-family="Arial, sans-serif" font-size="44" font-weight="700">Loop Catalog</text>
+  <text x="112" y="374" fill="#48615f" font-family="Arial, sans-serif" font-size="28">New product placeholder</text>
+  <text x="112" y="444" fill="#0d6e6e" font-family="Arial, sans-serif" font-size="30" font-weight="700">Image pending</text>
+  <text x="112" y="486" fill="#48615f" font-family="Arial, sans-serif" font-size="24">Dedicated artwork can be added later without changing the data model.</text>
+</svg>

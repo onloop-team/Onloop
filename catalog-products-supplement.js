@@ -1,0 +1,260 @@
+(() => {
+  const existingProducts = Array.isArray(window.LOOP_CATALOG_PRODUCTS)
+    ? window.LOOP_CATALOG_PRODUCTS
+    : [];
+  const placeholderImage = "images/catalog-products/catalog-placeholder.svg";
+
+  const slugify = (value) => {
+    const normalized = String(value || "").toLowerCase();
+    return normalized.replace(/[^a-z0-9]+/g, "-").replace(/-{2,}/g, "-").replace(/^-|-$/g, "") || "product";
+  };
+
+  const supplementRows = [
+    // Foodstuffs
+    ["Golden Penny Noodles Chicken", "Golden Penny", "Foodstuffs", "Noodles", "70g x 40", 11850],
+    ["Golden Penny Noodles Jollof", "Golden Penny", "Foodstuffs", "Noodles", "70g x 40", 11850],
+    ["Golden Penny Noodles Curry Chicken", "Golden Penny", "Foodstuffs", "Noodles", "70g x 40", 11950],
+    ["Minimie Onion Chicken Noodles", "Minimie", "Foodstuffs", "Noodles", "70g x 40", 11250],
+    ["Minimie Jollof Chicken Noodles", "Minimie", "Foodstuffs", "Noodles", "70g x 40", 11300],
+    ["Mimee Kimchi Instant Noodles", "Mimee", "Foodstuffs", "Noodles", "70g x 40", 11200],
+    ["Mimee Chicken Curry Noodles", "Mimee", "Foodstuffs", "Noodles", "70g x 40", 11150],
+    ["De-Royal Instant Noodles Chicken", "De-Royal", "Foodstuffs", "Noodles", "70g x 40", 10950],
+    ["De-Royal Instant Noodles Onion Chicken", "De-Royal", "Foodstuffs", "Noodles", "70g x 40", 10950],
+    ["Golden Penny Pasta Twists", "Golden Penny", "Foodstuffs", "Pasta", "500g", 1350],
+    ["Honeywell Macaroni", "Honeywell", "Foodstuffs", "Pasta", "500g", 1280],
+    ["Power Pasta Macaroni", "Power Pasta", "Foodstuffs", "Pasta", "500g", 1240],
+    ["Golden Penny Couscous", "Golden Penny", "Foodstuffs", "Pasta", "500g", 1700],
+    ["Honeywell Whole Wheat Pasta", "Honeywell", "Foodstuffs", "Pasta", "500g", 1650],
+    ["Ofada Rice", "Generic", "Foodstuffs", "Rice", "5kg", 16500],
+    ["Mama Gold Basmati Rice", "Mama Gold", "Foodstuffs", "Rice", "5kg", 14500],
+    ["Mama Gold Sella Basmati Rice", "Mama Gold", "Foodstuffs", "Rice", "5kg", 15000],
+    ["Stallion Gold Parboiled Rice", "Stallion", "Foodstuffs", "Rice", "5kg", 13200],
+    ["Falcon Basmati Rice", "Falcon", "Foodstuffs", "Rice", "5kg", 25000],
+    ["Royal Feast Thai Rice", "Royal Feast", "Foodstuffs", "Rice", "5kg", 13800],
+    ["Ayoola Poundo Yam", "Ayoola", "Foodstuffs", "Swallow", "1kg", 3200],
+    ["Ayoola Plantain Flour", "Ayoola", "Foodstuffs", "Swallow", "1kg", 3000],
+    ["Honeywell Wheat Meal", "Honeywell", "Foodstuffs", "Swallow", "1kg", 1900],
+    ["Honeywell Corn Meal", "Honeywell", "Foodstuffs", "Swallow", "1kg", 1850],
+    ["Golden Penny Poundo Yam Flour", "Golden Penny", "Foodstuffs", "Swallow", "1kg", 2950],
+    ["Ijebu Garri", "Generic", "Foodstuffs", "Swallow", "1kg", 1600],
+    ["Yellow Garri", "Generic", "Foodstuffs", "Swallow", "1kg", 1700],
+    ["Honey Beans", "Generic", "Foodstuffs", "Beans", "1kg", 2400],
+    ["Brown Beans", "Generic", "Foodstuffs", "Beans", "1kg", 2300],
+    ["Oloyin Beans", "Generic", "Foodstuffs", "Beans", "1kg", 2600],
+    ["Golden Penny Wheat Flour", "Golden Penny", "Foodstuffs", "Flour", "2kg", 2500],
+    ["Dangote Sugar", "Dangote", "Foodstuffs", "Sugar", "1kg", 1650],
+    ["Golden Penny Sugar", "Golden Penny", "Foodstuffs", "Sugar", "1kg", 1700],
+    ["BUA Sugar", "BUA", "Foodstuffs", "Sugar", "1kg", 1600],
+    ["Gino Pepper Onion Mix", "Gino", "Foodstuffs", "Tomato Paste", "70g x 50", 7600],
+    ["Tasty Tom Jollof Mix", "Tasty Tom", "Foodstuffs", "Tomato Paste", "70g x 50", 7450],
+    ["Heinz Baked Beans", "Heinz", "Foodstuffs", "Canned Food", "415g", 2400],
+    ["Geisha Mackerel In Tomato Sauce", "Geisha", "Foodstuffs", "Canned Food", "155g", 1350],
+    ["Titus Sardines In Oil", "Titus", "Foodstuffs", "Canned Food", "125g", 1050],
+    ["John West Tuna Chunks In Brine", "John West", "Foodstuffs", "Canned Food", "145g", 3600],
+    ["Heinz Tomato Ketchup", "Heinz", "Foodstuffs", "Spread", "460g", 3200],
+    ["Bama Mayonnaise", "Bama", "Foodstuffs", "Spread", "473ml", 2900],
+    ["Heinz Salad Cream", "Heinz", "Foodstuffs", "Spread", "425g", 3100],
+    ["Hellmann's Real Mayonnaise", "Hellmann's", "Foodstuffs", "Spread", "430ml", 5200],
+    ["Devon King's Veg Oil Spread", "Devon King's", "Foodstuffs", "Spread", "250g", 1900],
+    ["Blue Band Original Spread", "Blue Band", "Foodstuffs", "Spread", "450g", 2600],
+    ["Peak Instant Full Cream Milk Sachet", "Peak", "Foodstuffs", "Milk", "14g x 20", 2300],
+    ["Peak Evaporated Milk", "Peak", "Foodstuffs", "Milk", "170g x 3", 2100],
+    ["Dano Cool Cow Instant Filled Milk", "Dano", "Foodstuffs", "Milk", "14g x 20", 2100],
+    ["Nestle Nido Milk Powder", "Nestle", "Foodstuffs", "Milk", "350g", 6200],
+    ["Cowbell Evaporated Milk", "Cowbell", "Foodstuffs", "Milk", "170g x 3", 1850],
+    ["Custard Powder Vanilla", "Checkers", "Foodstuffs", "Breakfast Cereal", "2kg", 5200],
+    ["Checkers Custard Banana", "Checkers", "Foodstuffs", "Breakfast Cereal", "2kg", 5300],
+    ["Kellogg's Frosties", "Kellogg's", "Foodstuffs", "Breakfast Cereal", "500g", 6500],
+    ["Nestle Koko Krunch", "Nestle", "Foodstuffs", "Breakfast Cereal", "330g", 4200],
+    ["Weetabix Original", "Weetabix", "Foodstuffs", "Breakfast Cereal", "430g", 5900],
+    ["Quaker White Oats", "Quaker", "Foodstuffs", "Breakfast Cereal", "500g", 5600],
+    ["Golden Morn 3 In 1", "Golden Morn", "Foodstuffs", "Breakfast Cereal", "450g", 3200],
+    ["Honeywell Soya Oil", "Honeywell", "Foodstuffs", "Cooking Oil", "3L", 7900],
+    ["Knorr Aromat Seasoning", "Knorr", "Foodstuffs", "Seasoning", "90g", 1500],
+
+    // Toiletries
+    ["Lifebuoy Total 10 Soap", "Lifebuoy", "Toiletries", "Bath Soap", "110g x 6", 3950],
+    ["Lux Soft Touch Soap", "Lux", "Toiletries", "Bath Soap", "125g x 6", 3800],
+    ["Pears Transparent Soap", "Pears", "Toiletries", "Bath Soap", "125g x 3", 3600],
+    ["Palmolive Naturals Soap", "Palmolive", "Toiletries", "Bath Soap", "150g x 6", 4200],
+    ["NIVEA Creme Care Soap", "NIVEA", "Toiletries", "Bath Soap", "100g x 4", 4500],
+    ["Safeguard Antibacterial Soap", "Safeguard", "Toiletries", "Bath Soap", "175g x 3", 3900],
+    ["Oral-B 3D White Toothpaste", "Oral-B", "Toiletries", "Oral Care", "140g", 2900],
+    ["Sensodyne Repair & Protect Toothpaste", "Sensodyne", "Toiletries", "Oral Care", "100g", 5200],
+    ["Macleans Fresh Mint Toothpaste", "Macleans", "Toiletries", "Oral Care", "140g", 2400],
+    ["Reach Toothbrush Medium", "Reach", "Toiletries", "Oral Care", "1 piece", 1100],
+    ["Colgate Plax Mouthwash", "Colgate", "Toiletries", "Oral Care", "500ml", 6200],
+    ["Always Maxi Thick Pads", "Always", "Toiletries", "Feminine Care", "10 pads", 1600],
+    ["Kotex Maxi Sanitary Pads", "Kotex", "Toiletries", "Feminine Care", "10 pads", 1500],
+    ["Lady Care Sanitary Pads", "Lady Care", "Toiletries", "Feminine Care", "10 pads", 1200],
+    ["Softcare Baby Cotton Wool", "Softcare", "Toiletries", "Cotton Wool & Buds", "300g", 1800],
+    ["Johnson's Cotton Buds", "Johnson's", "Toiletries", "Cotton Wool & Buds", "200 sticks", 1400],
+    ["NIVEA Pearl & Beauty Roll-on", "NIVEA", "Toiletries", "Deodorant", "50ml", 1950],
+    ["Dove Original Deodorant Spray", "Dove", "Toiletries", "Deodorant", "250ml", 6200],
+    ["Sure Women Bright Bouquet Spray", "Sure", "Toiletries", "Deodorant", "250ml", 5900],
+    ["Rexona Men Quantum Dry Spray", "Rexona", "Toiletries", "Deodorant", "200ml", 5700],
+    ["Axe Gold Body Spray", "Axe", "Toiletries", "Body Spray", "150ml", 5100],
+    ["Vaseline Petroleum Jelly Original", "Vaseline", "Toiletries", "Body Care", "250ml", 2800],
+    ["Head & Shoulders Classic Clean Shampoo", "Head & Shoulders", "Toiletries", "Hair Care", "400ml", 5200],
+    ["Sunsilk Black Shine Shampoo", "Sunsilk", "Toiletries", "Hair Care", "350ml", 3100],
+    ["Pantene Pro-V Smooth Shampoo", "Pantene", "Toiletries", "Hair Care", "400ml", 4800],
+    ["Dark & Lovely 3 In 1 Shampoo", "Dark & Lovely", "Toiletries", "Hair Care", "400ml", 4300],
+    ["TCB No Base Relaxer Regular", "TCB", "Toiletries", "Hair Relaxer", "1 kit", 3800],
+    ["Veet Hair Removal Cream", "Veet", "Toiletries", "Hair Removal", "100ml", 3900],
+    ["Gillette Blue II Disposable Razors", "Gillette", "Toiletries", "Shaving", "5 pieces", 2500],
+    ["Gillette Series Shave Gel", "Gillette", "Toiletries", "Shaving", "200ml", 4900],
+
+    // Cleaning & Laundry
+    ["Omo Hand Wash Powder", "Omo", "Cleaning & Laundry", "Laundry Detergent", "900g", 2850],
+    ["Ariel Complete 4 Detergent", "Ariel", "Cleaning & Laundry", "Laundry Detergent", "900g", 3100],
+    ["Sunlight Tropical Sensations Detergent", "Sunlight", "Cleaning & Laundry", "Laundry Detergent", "900g", 2800],
+    ["Elephant Blue Detergent", "Elephant", "Cleaning & Laundry", "Laundry Detergent", "900g", 2600],
+    ["Zip Detergent Powder", "Zip", "Cleaning & Laundry", "Laundry Detergent", "850g", 2350],
+    ["Klin Liquid Detergent", "Klin", "Cleaning & Laundry", "Liquid Detergent", "1L", 4200],
+    ["Easy On Starch", "Easy On", "Cleaning & Laundry", "Laundry Accessories", "400g", 1500],
+    ["Robin Blue", "Robin", "Cleaning & Laundry", "Laundry Accessories", "150g", 800],
+    ["Hypo Toilet Cleaner", "Hypo", "Cleaning & Laundry", "Toilet Cleaner", "750ml", 2500],
+    ["Jik Germicidal Bleach", "Jik", "Cleaning & Laundry", "Bleach", "1L", 1800],
+    ["Vim Dishwash Liquid", "Vim", "Cleaning & Laundry", "Dishwashing Liquid", "500ml", 1750],
+    ["Morning Fresh Dishwashing Paste", "Morning Fresh", "Cleaning & Laundry", "Dishwashing Liquid", "900g", 2300],
+    ["Joy Dishwashing Liquid", "Joy", "Cleaning & Laundry", "Dishwashing Liquid", "500ml", 2100],
+    ["Dettol Disinfectant Spray", "Dettol", "Cleaning & Laundry", "Disinfectant", "450ml", 6200],
+    ["Harpic Bathroom Cleaner", "Harpic", "Cleaning & Laundry", "Surface Cleaner", "500ml", 2800],
+    ["Mr Muscle Glass Cleaner", "Mr Muscle", "Cleaning & Laundry", "Surface Cleaner", "500ml", 4200],
+    ["Mr Muscle Multi Surface Cleaner", "Mr Muscle", "Cleaning & Laundry", "Surface Cleaner", "500ml", 4300],
+    ["Lysol Disinfectant Spray", "Lysol", "Cleaning & Laundry", "Disinfectant", "510g", 9500],
+    ["Air Wick Freshmatic Refill", "Air Wick", "Cleaning & Laundry", "Air Freshener", "250ml", 5200],
+    ["Glade Automatic Spray Refill", "Glade", "Cleaning & Laundry", "Air Freshener", "269ml", 5800],
+    ["Mortein Mosquito Coil", "Mortein", "Cleaning & Laundry", "Insecticide", "10 coils", 950],
+    ["Baygon Cockroach Killer", "Baygon", "Cleaning & Laundry", "Insecticide", "400ml", 3800],
+    ["Scotch-Brite Heavy Duty Scrub Pad", "Scotch-Brite", "Cleaning & Laundry", "Sponges & Scourers", "2 pieces", 1600],
+    ["Vileda Microfibre Cloth", "Vileda", "Cleaning & Laundry", "Cleaning Cloths", "1 piece", 1800],
+    ["Addis Peg Basket", "Addis", "Cleaning & Laundry", "Laundry Accessories", "1 piece", 4200],
+
+    // Baby & Kids
+    ["Lactogen 1 Infant Formula", "Lactogen", "Baby & Kids", "Infant Formula", "400g", 9000],
+    ["Lactogen 2 Follow-Up Formula", "Lactogen", "Baby & Kids", "Infant Formula", "400g", 9200],
+    ["Aptamil First Infant Milk", "Aptamil", "Baby & Kids", "Infant Formula", "800g", 28500],
+    ["Aptamil Follow On Milk", "Aptamil", "Baby & Kids", "Growing Up Milk", "800g", 27600],
+    ["Nido Fortified Growing Up Milk", "Nestle Nido", "Baby & Kids", "Growing Up Milk", "350g", 5600],
+    ["Nestle Nan Supreme Pro 2", "Nestle", "Baby & Kids", "Growing Up Milk", "400g", 12500],
+    ["Cerelac Honey & Wheat", "Cerelac", "Baby & Kids", "Baby Food", "400g", 7350],
+    ["Cerelac Mixed Fruits", "Cerelac", "Baby & Kids", "Baby Food", "400g", 7400],
+    ["Huggies Newborn Diapers", "Huggies", "Baby & Kids", "Diapers", "44 pieces", 13500],
+    ["Pampers Premium Care New Baby", "Pampers", "Baby & Kids", "Diapers", "50 pieces", 16000],
+    ["Molfix Junior Diapers", "Molfix", "Baby & Kids", "Diapers", "56 pieces", 15500],
+    ["Huggies Pure Baby Wipes", "Huggies", "Baby & Kids", "Baby Wipes", "56 wipes", 3100],
+    ["Pampers Sensitive Baby Wipes", "Pampers", "Baby & Kids", "Baby Wipes", "56 wipes", 3200],
+    ["Cussons Baby Hair & Body Wash", "Cussons", "Baby & Kids", "Baby Toiletries", "300ml", 3500],
+    ["Johnson's Baby Shampoo", "Johnson's", "Baby & Kids", "Baby Toiletries", "300ml", 4200],
+    ["Sebamed Baby Lotion", "Sebamed", "Baby & Kids", "Baby Toiletries", "200ml", 8200],
+    ["Sudocrem Diaper Rash Cream", "Sudocrem", "Baby & Kids", "Baby Toiletries", "125g", 6800],
+    ["Tommee Tippee Pacifier", "Tommee Tippee", "Baby & Kids", "Baby Feeding", "2 pieces", 3800],
+    ["Avent Baby Bottle Warmer", "Philips Avent", "Baby & Kids", "Baby Feeding", "1 piece", 22000],
+    ["Fisher-Price Baby Feeding Spoon Set", "Fisher-Price", "Baby & Kids", "Baby Feeding", "1 set", 2800],
+
+    // Beverages
+    ["7Up PET", "7Up", "Beverages", "Soft Drink", "50cl x 12", 5800],
+    ["Mirinda Orange PET", "Mirinda", "Beverages", "Soft Drink", "50cl x 12", 5800],
+    ["Teem Bitter Lemon PET", "Teem", "Beverages", "Soft Drink", "50cl x 12", 6000],
+    ["Mountain Dew PET", "Mountain Dew", "Beverages", "Soft Drink", "50cl x 12", 6200],
+    ["Supa Komando Energy Drink", "Supa Komando", "Beverages", "Energy Drink", "50cl x 12", 9000],
+    ["Lipton Ice Tea Peach", "Lipton", "Beverages", "Tea", "33cl x 12", 7800],
+    ["Coke Zero PET", "Coca-Cola", "Beverages", "Soft Drink", "50cl x 12", 6200],
+    ["Fanta Pineapple PET", "Fanta", "Beverages", "Soft Drink", "50cl x 12", 6000],
+    ["Sprite Zero PET", "Sprite", "Beverages", "Soft Drink", "50cl x 12", 6200],
+    ["Schweppes Tonic Water", "Schweppes", "Beverages", "Soft Drink", "33cl x 12", 7400],
+    ["Fayrouz Pineapple Can", "Fayrouz", "Beverages", "Malt Drink", "33cl x 24", 12600],
+    ["Malta Gold Can", "Malta Gold", "Beverages", "Malt Drink", "33cl x 24", 9800],
+    ["Dubic Malt Can", "Dubic", "Beverages", "Malt Drink", "33cl x 24", 9600],
+    ["Chivita Orange Juice", "Chivita", "Beverages", "Juice", "1L x 12", 17600],
+    ["Chi Exotic Juice", "Chi", "Beverages", "Juice", "1L x 12", 16800],
+    ["Happy Hour Red Grape Juice", "Happy Hour", "Beverages", "Juice", "1L x 12", 16200],
+    ["Five Alive Apple Drink", "Five Alive", "Beverages", "Juice Drink", "1L x 12", 15800],
+    ["Fearless Energy Drink", "Fearless", "Beverages", "Energy Drink", "50cl x 12", 10800],
+    ["Nescafe Classic 3 In 1", "Nescafe", "Beverages", "Coffee", "20g x 10", 2400],
+    ["Twinings English Breakfast Tea", "Twinings", "Beverages", "Tea", "50 bags", 8500],
+
+    // Skincare
+    ["NIVEA Soft Moisturizing Cream", "NIVEA", "Skincare", "Body Cream", "200ml", 3200],
+    ["NIVEA Creme Tin", "NIVEA", "Skincare", "Body Cream", "150ml", 3500],
+    ["Vaseline Blue Seal Original Jelly", "Vaseline", "Skincare", "Skincare Oil", "250ml", 2900],
+    ["E45 Cream", "E45", "Skincare", "Body Cream", "125g", 8500],
+    ["Cetaphil Gentle Skin Cleanser", "Cetaphil", "Skincare", "Cleanser", "236ml", 18500],
+    ["CeraVe Foaming Facial Cleanser", "CeraVe", "Skincare", "Cleanser", "236ml", 21500],
+    ["CeraVe Moisturizing Cream", "CeraVe", "Skincare", "Body Cream", "340g", 23500],
+    ["Simple Soothing Facial Toner", "Simple", "Skincare", "Cleanser", "200ml", 6500],
+    ["Garnier Vitamin C Booster Serum", "Garnier", "Skincare", "Serum", "30ml", 7200],
+    ["Neutrogena Oil-Free Acne Wash", "Neutrogena", "Skincare", "Cleanser", "200ml", 14500],
+    ["La Roche-Posay Effaclar Purifying Cleanser", "La Roche-Posay", "Skincare", "Cleanser", "200ml", 24500],
+    ["Palmer's Cocoa Butter Stretch Marks Lotion", "Palmer's", "Skincare", "Body Lotion", "250ml", 6200],
+    ["Palmer's Cocoa Butter Jar", "Palmer's", "Skincare", "Body Cream", "270g", 5800],
+    ["Bio-Oil Dry Skin Gel", "Bio-Oil", "Skincare", "Skincare Oil", "100ml", 11800],
+    ["Dove Beauty Cream Bar", "Dove", "Skincare", "Body Cream", "100g x 2", 3800],
+    ["Clean & Clear Blackhead Clearing Scrub", "Clean & Clear", "Skincare", "Scrub", "150ml", 5800],
+    ["NIVEA Sun Protect & Moisture SPF50", "NIVEA", "Skincare", "Sunscreen", "200ml", 11200],
+    ["Banana Boat Ultra Sport Sunscreen SPF50", "Banana Boat", "Skincare", "Sunscreen", "90ml", 16000],
+    ["Labello Cherry Shine Lip Balm", "Labello", "Skincare", "Lip Care", "4.8g", 2500],
+    ["Carmex Classic Lip Balm", "Carmex", "Skincare", "Lip Care", "7.5g", 3200],
+
+    // Fragrance
+    ["Jaguar Classic Black Eau De Toilette", "Jaguar", "Fragrance", "Cologne", "100ml", 32000],
+    ["Ferrari Black Eau De Toilette", "Ferrari", "Fragrance", "Cologne", "125ml", 35000],
+    ["Rasasi Blue For Men Eau De Parfum", "Rasasi", "Fragrance", "Perfume", "100ml", 22000],
+    ["Ard Al Zaafaran Dirham Eau De Parfum", "Ard Al Zaafaran", "Fragrance", "Perfume", "100ml", 18500],
+    ["Lattafa Raghba Eau De Parfum", "Lattafa", "Fragrance", "Perfume", "100ml", 24000],
+    ["Maison Alhambra Kismet Angel Eau De Parfum", "Maison Alhambra", "Fragrance", "Perfume", "100ml", 26500],
+    ["Victoria's Secret Bare Vanilla Body Mist", "Victoria's Secret", "Fragrance", "Body Mist", "250ml", 18500],
+    ["Bath & Body Works Into The Night Body Mist", "Bath & Body Works", "Fragrance", "Body Mist", "236ml", 19000],
+    ["Adidas Dynamic Pulse Body Spray", "Adidas", "Fragrance", "Body Spray", "150ml", 4500],
+    ["NIVEA Pearl & Beauty Body Spray", "NIVEA", "Fragrance", "Body Spray", "150ml", 5200],
+
+    // Dog Food
+    ["Purina Pro Plan Puppy Chicken", "Purina Pro Plan", "Dog Food", "Dry Dog Food", "3kg", 28500],
+    ["Bonzo Complete Dog Food", "Bonzo", "Dog Food", "Dry Dog Food", "3kg", 20500],
+    ["Reflex Adult Dog Food", "Reflex", "Dog Food", "Dry Dog Food", "3kg", 26500],
+    ["Drools Adult Chicken And Egg", "Drools", "Dog Food", "Dry Dog Food", "3kg", 21500],
+    ["Chappie Complete Dry Dog Food", "Chappie", "Dog Food", "Dry Dog Food", "2.5kg", 19800],
+
+    // Wine & Alcohol (Age Restricted)
+    ["Star Lager Beer", "Star", "Wine & Alcohol (Age Restricted)", "Beer", "60cl x 12", 7800],
+    ["Heineken Lager Beer", "Heineken", "Wine & Alcohol (Age Restricted)", "Beer", "60cl x 12", 10500],
+    ["Smirnoff Ice", "Smirnoff", "Wine & Alcohol (Age Restricted)", "Ready To Drink", "33cl x 24", 16500],
+    ["Gordon's Dry Gin", "Gordon's", "Wine & Alcohol (Age Restricted)", "Spirit", "75cl", 9800],
+    ["Baileys Original Irish Cream", "Baileys", "Wine & Alcohol (Age Restricted)", "Liqueur", "75cl", 24500],
+
+    // Kitchen & Home Essentials
+    ["Extension Power Strip", "Generic", "Kitchen & Home Essentials", "Electricals", "1 piece", 6500],
+    ["Airtight Food Jar Set", "Generic", "Kitchen & Home Essentials", "Food Containers", "3 pieces", 5200],
+    ["Toilet Brush Set", "Generic", "Kitchen & Home Essentials", "Bathroom Accessories", "1 set", 3500],
+    ["Microfiber Spin Mop Refill", "Generic", "Kitchen & Home Essentials", "Cleaning Tools", "1 piece", 2200],
+    ["Vacuum Flask 1L", "Generic", "Kitchen & Home Essentials", "Kitchenware", "1 piece", 5800],
+  ];
+
+  const existingIds = new Set(existingProducts.map((product) => product.id));
+  const supplementProducts = supplementRows
+    .map(([name, brand, category, subcategory, unit, price]) => ({
+      id: slugify(`${name} ${unit}`),
+      name,
+      brand,
+      category,
+      subcategory,
+      unit,
+      price,
+      image: placeholderImage,
+      badge: "New",
+    }))
+    .filter((product) => {
+      if (existingIds.has(product.id)) return false;
+      existingIds.add(product.id);
+      return true;
+    });
+
+  if (supplementProducts.length !== supplementRows.length) {
+    console.warn(
+      `Loop catalog supplement expected ${supplementRows.length} products but added ${supplementProducts.length}.`
+    );
+  }
+
+  window.LOOP_CATALOG_PRODUCTS = existingProducts.concat(supplementProducts);
+})();

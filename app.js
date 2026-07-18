@@ -4,9 +4,48 @@ const ONBOARDING_CLOSE_COUNT_KEY = "loop_onboarding_close_count";
 const ONBOARDING_CLOSE_LIMIT = 3;
 const MINIMUM_ORDER_AMOUNT = 20000;
 const SERVICE_CHARGE_RATE = 0.06;
+const PAGE_SIZE = 20;
+const PAGINATION_START_COUNT = 5;
+const PAGINATION_END_COUNT = 3;
+const PAGINATION_MIDDLE_SIBLINGS = 1;
+
+const normalizeCatalogField = (value) =>
+  String(value || "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, " ");
+
+const getCatalogDedupKey = (product) =>
+  [
+    normalizeCatalogField(product.brand),
+    normalizeCatalogField(product.name),
+    normalizeCatalogField(product.category),
+    normalizeCatalogField(product.subcategory),
+    normalizeCatalogField(product.unit),
+  ].join("|");
+
+// Prevent repeated catalog rows from rendering more than once in the storefront.
+const dedupeCatalogProducts = (catalog) => {
+  const seenProducts = new Map();
+
+  return catalog.filter((product) => {
+    const dedupKey = getCatalogDedupKey(product);
+    const existingProduct = seenProducts.get(dedupKey);
+
+    if (!existingProduct) {
+      seenProducts.set(dedupKey, product);
+      return true;
+    }
+
+    console.warn(
+      `Skipping duplicate catalog product "${product.name}" (${product.unit}). Keeping "${existingProduct.id}", dropping "${product.id}".`
+    );
+    return false;
+  });
+};
 
 const catalogProducts = Array.isArray(window.LOOP_CATALOG_PRODUCTS)
-  ? window.LOOP_CATALOG_PRODUCTS
+  ? dedupeCatalogProducts(window.LOOP_CATALOG_PRODUCTS)
   : [];
 
 const products = catalogProducts.map((product) => ({
@@ -95,6 +134,7 @@ const state = {
   searchQuery: "",
   cart: [],
   recurrence: "Monthly",
+  currentPage: 1,
 };
 
 const formatNaira = (amount) =>
@@ -225,7 +265,9 @@ const categories = ["All", ...new Set(products.map((product) => product.category
 const categoryTabs = document.querySelector("#categoryTabs");
 const productSearch = document.querySelector("#productSearch");
 const bundleGrid = document.querySelector("#bundleGrid");
+const productResultsMeta = document.querySelector("#productResultsMeta");
 const productGrid = document.querySelector("#productGrid");
+const productPagination = document.querySelector("#productPagination");
 const desktopCart = document.querySelector("#desktopCart");
 const mobileCartBar = document.querySelector("#mobileCartBar");
 const reviewModal = document.querySelector("#reviewModal");
@@ -295,9 +337,10 @@ const renderBundles = () => {
     .join("");
 };
 
-const renderProducts = () => {
+const getFilteredProducts = () => {
   const query = state.searchQuery.trim().toLowerCase();
-  const visibleProducts = products.filter((product) => {
+
+  return products.filter((product) => {
     const matchesCategory =
       state.selectedCategory === "All" ||
       product.category === state.selectedCategory;
@@ -306,14 +349,124 @@ const renderProducts = () => {
 
     return matchesCategory && matchesSearch;
   });
+};
 
-  if (!visibleProducts.length) {
+const renderProductPagination = (totalProducts, totalPages) => {
+  if (!productResultsMeta || !productPagination) return;
+
+  if (!totalProducts) {
+    productResultsMeta.textContent = "0 products";
+    productPagination.innerHTML = "";
+    productPagination.hidden = true;
+    return;
+  }
+
+  const pageStart = (state.currentPage - 1) * PAGE_SIZE;
+  const pageEnd = Math.min(pageStart + PAGE_SIZE, totalProducts);
+
+  productResultsMeta.textContent = `Showing ${pageStart + 1}-${pageEnd} of ${totalProducts} products | Page ${state.currentPage} of ${totalPages}`;
+
+  if (totalPages === 1) {
+    productPagination.innerHTML = "";
+    productPagination.hidden = true;
+    return;
+  }
+
+  const visiblePages = new Set();
+
+  const isWithinStartBlock = state.currentPage <= PAGINATION_START_COUNT;
+
+  if (isWithinStartBlock) {
+    for (
+      let pageNumber = 1;
+      pageNumber <= Math.min(totalPages, PAGINATION_START_COUNT);
+      pageNumber += 1
+    ) {
+      visiblePages.add(pageNumber);
+    }
+  } else {
+    visiblePages.add(1);
+  }
+
+  for (
+    let pageNumber = Math.max(1, totalPages - PAGINATION_END_COUNT + 1);
+    pageNumber <= totalPages;
+    pageNumber += 1
+  ) {
+    visiblePages.add(pageNumber);
+  }
+
+  if (!isWithinStartBlock) {
+    for (
+      let pageNumber = Math.max(1, state.currentPage - PAGINATION_MIDDLE_SIBLINGS);
+      pageNumber <= Math.min(totalPages, state.currentPage + PAGINATION_MIDDLE_SIBLINGS);
+      pageNumber += 1
+    ) {
+      visiblePages.add(pageNumber);
+    }
+  }
+
+  const pageButtons = [];
+  const sortedPages = [...visiblePages].sort((left, right) => left - right);
+  let previousPageNumber = 0;
+
+  sortedPages.forEach((pageNumber) => {
+    if (previousPageNumber && pageNumber - previousPageNumber > 1) {
+      pageButtons.push(`<span class="pagination-ellipsis" aria-hidden="true">...</span>`);
+    }
+
+    const isActive = pageNumber === state.currentPage;
+    pageButtons.push(`
+      <button
+        class="pagination-button ${isActive ? "active" : ""}"
+        type="button"
+        data-page-number="${pageNumber}"
+        ${isActive ? 'aria-current="page"' : ""}
+      >
+        ${pageNumber}
+      </button>
+    `);
+
+    previousPageNumber = pageNumber;
+  });
+
+  productPagination.hidden = false;
+  productPagination.innerHTML = `
+    <button
+      class="pagination-button pagination-button-nav"
+      type="button"
+      data-page-direction="previous"
+      ${state.currentPage === 1 ? "disabled" : ""}
+    >
+      Previous
+    </button>
+    ${pageButtons.join("")}
+    <button
+      class="pagination-button pagination-button-nav"
+      type="button"
+      data-page-direction="next"
+      ${state.currentPage === totalPages ? "disabled" : ""}
+    >
+      Next
+    </button>
+  `;
+};
+
+const renderProducts = () => {
+  const filteredProducts = getFilteredProducts();
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
+  state.currentPage = Math.min(Math.max(state.currentPage, 1), totalPages);
+  const pageStart = (state.currentPage - 1) * PAGE_SIZE;
+  const visibleProducts = filteredProducts.slice(pageStart, pageStart + PAGE_SIZE);
+
+  if (!filteredProducts.length) {
     productGrid.innerHTML = `
       <div class="empty-results">
         <strong>No products found</strong>
         <p>Try another search term or switch to All categories.</p>
       </div>
     `;
+    renderProductPagination(0, 1);
     return;
   }
 
@@ -349,6 +502,23 @@ const renderProducts = () => {
       `;
     })
     .join("");
+
+  renderProductPagination(filteredProducts.length, totalPages);
+};
+
+const goToPage = (nextPage) => {
+  const filteredProducts = getFilteredProducts();
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
+  const clampedPage = Math.min(Math.max(nextPage, 1), totalPages);
+
+  if (clampedPage === state.currentPage) return;
+
+  state.currentPage = clampedPage;
+  renderProducts();
+  document.querySelector(".product-scroll")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 };
 
 const renderCartSummary = () => {
@@ -682,11 +852,13 @@ categoryTabs.addEventListener("click", (event) => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
   state.selectedCategory = button.dataset.category;
+  state.currentPage = 1;
   render();
 });
 
 productSearch.addEventListener("input", (event) => {
   state.searchQuery = event.target.value;
+  state.currentPage = 1;
   renderProducts();
 });
 
@@ -716,6 +888,17 @@ document.addEventListener("click", (event) => {
 
   if (event.target.closest("[data-open-review]")) {
     openReview();
+  }
+
+  const pageButton = event.target.closest("[data-page-number]");
+  if (pageButton) {
+    goToPage(Number(pageButton.dataset.pageNumber) || 1);
+  }
+
+  const pageDirectionButton = event.target.closest("[data-page-direction]");
+  if (pageDirectionButton) {
+    const direction = pageDirectionButton.dataset.pageDirection;
+    goToPage(direction === "next" ? state.currentPage + 1 : state.currentPage - 1);
   }
 });
 
