@@ -872,20 +872,30 @@ const toggleBackToTopButton = () => {
 };
 
 const renderOnboarding = () => {
-  onboardingProgress.innerHTML = "";
+  onboardingProgress.innerHTML = `
+    <span class="onboarding-progress-dot active"></span>
+    <span class="onboarding-progress-dot"></span>
+    <span class="onboarding-progress-dot"></span>
+  `;
 
   onboardingContent.innerHTML = `
     <div class="onboarding-intro">
       <p class="eyebrow">Welcome to Restoq</p>
-      <h2 id="onboardingTitle">Build a basket in minutes.</h2>
-      <p>Start with a bundle or pick items yourself. We confirm everything on WhatsApp.</p>
+      <h2 id="onboardingTitle">Never run out of what keeps the day moving.</h2>
+      <p>Start with essentials, top up with anything else, and confirm availability on WhatsApp.</p>
+    </div>
+    <div class="onboarding-highlights" aria-label="Restoq order highlights">
+      <span>Pantry</span>
+      <span>Cleaning</span>
+      <span>Office</span>
+      <span>Drinks</span>
     </div>
     <div class="onboarding-list">
       ${onboardingSteps
         .map(
           (step, index) => `
-            <article class="onboarding-step">
-              <span>${index + 1}</span>
+            <article class="onboarding-step" style="--step-index: ${index}">
+              <span class="onboarding-step-number">0${index + 1}</span>
               <div>
                 <h3>${step.title}</h3>
                 <p>${step.description}</p>

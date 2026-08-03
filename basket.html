@@ -121,14 +121,20 @@
       </main>
 
       <footer class="site-footer">
-        <div>
+        <div class="footer-brand">
           <img
             class="footer-logo"
             src="images/restoq-logo.png"
             alt="Restoq - Never run out."
           />
+          <p>Never run out of the essentials</p>
         </div>
-        <p>Essentials for homes and businesses, ordered online and confirmed on WhatsApp.</p>
+        <nav class="footer-links" aria-label="Legal links">
+          <a href="policies.html#terms">Terms &amp; Conditions</a>
+          <a href="policies.html#privacy">Privacy Policy</a>
+          <a href="policies.html#refund">Refund Policy</a>
+        </nav>
+        <p class="footer-copyright">&copy; 2026 Restoq. All rights reserved.</p>
       </footer>
     </div>
 
@@ -160,7 +166,10 @@
             <h2 id="bundleDetailTitle">Bundle details</h2>
           </div>
           <button class="icon-button" id="closeBundleButton" aria-label="Close bundle details">
-            x
+            <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7 7l10 10" />
+              <path d="M17 7 7 17" />
+            </svg>
           </button>
         </div>
         <div class="bundle-detail-body" id="bundleDetailBody"></div>
@@ -176,7 +185,7 @@
     </div>
 
     <div
-      class="modal-backdrop hidden"
+      class="modal-backdrop onboarding-backdrop hidden"
       id="onboardingModal"
       role="dialog"
       aria-modal="true"
@@ -184,7 +193,10 @@
     >
       <div class="onboarding-card">
         <button class="icon-button modal-close" id="skipOnboardingTop" aria-label="Close onboarding">
-          x
+          <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 7l10 10" />
+            <path d="M17 7 7 17" />
+          </svg>
         </button>
         <div class="onboarding-progress" id="onboardingProgress"></div>
         <div id="onboardingContent"></div>
@@ -216,7 +228,12 @@
               </svg>
             </span>
             <span class="review-back-label">Back</span>
-            <span class="review-close-icon" aria-hidden="true">x</span>
+            <span class="review-close-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M7 7l10 10" />
+                <path d="M17 7 7 17" />
+              </svg>
+            </span>
           </button>
         </div>
 
