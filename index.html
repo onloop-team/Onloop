@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Loop - Never run out.</title>
+    <title>Restoq - Never run out.</title>
     <meta
       name="description"
-      content="Loop keeps your home stocked with everyday essentials on a rhythm that works for you."
+      content="Restoq keeps homes and businesses stocked with everyday essentials, corporate supplies, and staff welfare packages."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="images/favicon.ico" sizes="any" />
     <link rel="icon" href="images/favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css" />
@@ -25,19 +24,21 @@
   <body class="home-page">
     <div class="page-shell">
       <header class="site-header">
-        <a class="brand" href="index.html#top" aria-label="Loop home">
+        <a class="brand" href="index.html#top" aria-label="Restoq home">
           <img
             class="brand-logo"
-            src="images/loop-logo-transparent.png"
-            alt="Loop - Never run out."
+            src="images/restoq-logo.png"
+            alt="Restoq - Never run out."
           />
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#how-it-works">How it works</a>
+          <a href="#business">For business</a>
+          <a href="#packages">Packages</a>
           <a href="basket.html">Products</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a class="nav-cta" href="basket.html">Start order</a>
+        <a class="nav-cta" href="basket.html">Build basket</a>
         <button
           class="menu-toggle"
           type="button"
@@ -51,143 +52,331 @@
         </button>
         <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
           <a href="#how-it-works">How it works</a>
+          <a href="#business">For business</a>
+          <a href="#packages">Packages</a>
           <a href="basket.html">Products</a>
-          <a href="#reviews">Reviews</a>
+          <a href="#reviews">Patrons</a>
           <a href="#faq">FAQ</a>
-          <a class="mobile-menu-cta" href="basket.html">Start order</a>
+          <a class="mobile-menu-cta" href="basket.html">Build basket</a>
         </nav>
       </header>
 
       <main id="top">
-        <section class="hero section-pad">
+        <section class="hero home-hero section-pad" data-reveal>
           <div class="hero-copy">
-            <p class="eyebrow">Home restock assistant</p>
-            <h1>Your home essentials, on repeat.</h1>
+            <p class="eyebrow">Restoq for households + businesses</p>
+            <h1>Never run out of the essentials that keep life moving.</h1>
             <p class="hero-subtitle">
-              Choose the household items you always need. Loop helps you restock
-              them weekly, biweekly, or monthly - without repeating the same
-              shopping stress.
+              Build one basket for household supplies, office pantry items,
+              cleaning essentials, stationery, and welfare packages. Restoq
+              helps you confirm the order on WhatsApp and restock with less
+              effort.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="basket.html"
-                >Start building my basket</a
+              <a class="button button-primary" href="basket.html?for=household#products"
+                >Build your basket</a
               >
-              <a class="button button-secondary" href="#how-it-works"
-                >How it works</a
+              <a class="button button-secondary" href="basket.html?for=business#products"
+                >Explore business restock</a
               >
             </div>
-            <p class="support-note">
-              Payment and delivery are confirmed on WhatsApp.
-            </p>
           </div>
-          <div class="hero-panel" aria-label="Loop basket preview">
-            <div class="hero-basket">
-              <div>
-                <span class="mini-label">Monthly restock</span>
-                <h2>Family essentials</h2>
+
+          <div class="hero-visual" aria-label="Restoq restock preview">
+            <div class="hero-scene" aria-hidden="true">
+              <img
+                class="scene-product scene-product-detergent"
+                src="images/products/detergent.png"
+                alt=""
+              />
+              <img
+                class="scene-product scene-product-tissue"
+                src="images/products/toilet-tissue-pack.png"
+                alt=""
+              />
+              <div class="basket-stage">
+                <span class="basket-handle"></span>
+                <div class="basket-products">
+                  <img
+                    class="basket-product basket-product-rice"
+                    src="images/products/rice.png"
+                    alt=""
+                  />
+                  <img
+                    class="basket-product basket-product-water"
+                    src="images/products/bottled-water.png"
+                    alt=""
+                  />
+                  <img
+                    class="basket-product basket-product-tea"
+                    src="images/products/tea-pack.png"
+                    alt=""
+                  />
+                </div>
+                <div class="basket-bin">
+                  <span>Restoq basket</span>
+                  <strong>Foodstuff, toiletries, office pantry</strong>
+                </div>
               </div>
-              <div class="hero-product-stack" aria-hidden="true">
-                <img src="images/products/toilet-tissue-pack.png" alt="" />
+              <img
+                class="scene-product scene-product-malt"
+                src="images/products/malt-drink-pack.png"
+                alt=""
+              />
+              <div class="restock-ticket">
+                <span>Today&apos;s basket</span>
+                <strong>Ready to confirm</strong>
+                <div>
+                  <small>Home</small>
+                  <small>Office</small>
+                  <small>Welfare</small>
+                </div>
+              </div>
+              <div class="delivery-note-card">
+                <span>Next step</span>
+                <strong>WhatsApp confirmation</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="entry-section section-pad" aria-labelledby="entryTitle" data-reveal>
+          <div class="section-heading">
+            <p class="eyebrow">Start where you are</p>
+            <h2 id="entryTitle">Choose the restock path that matches today&apos;s need.</h2>
+          </div>
+          <div class="entry-grid">
+            <article class="entry-card entry-card-home">
+              <div class="entry-media" aria-hidden="true">
                 <img src="images/products/rice.png" alt="" />
+                <img src="images/products/toilet-tissue-pack.png" alt="" />
+              </div>
+              <div>
+                <span>Households</span>
+                <h3>Shop for my household</h3>
+                <p>Foodstuff, toiletries, baby care, drinks, and cleaning basics for everyday home restock.</p>
+              </div>
+              <a class="entry-link" href="basket.html?for=household#products">Shop household essentials</a>
+            </article>
+            <article class="entry-card entry-card-business">
+              <div class="entry-media" aria-hidden="true">
+                <img src="images/products/bottled-water.png" alt="" />
+                <img src="images/products/coffee.png" alt="" />
+              </div>
+              <div>
+                <span>Businesses</span>
+                <h3>Restock my business</h3>
+                <p>Office pantry, cleaning supplies, welfare items, and stationery requests prepared for confirmation.</p>
+              </div>
+              <a class="entry-link" href="basket.html?for=business#products">Start business basket</a>
+            </article>
+            <article class="entry-card entry-card-bundles">
+              <div class="entry-media" aria-hidden="true">
+                <img src="images/products/malt-drink-pack.png" alt="" />
                 <img src="images/products/detergent.png" alt="" />
               </div>
-              <div class="basket-line">
-                <span>Toilet Tissue Pack</span>
-                <strong>2</strong>
+              <div>
+                <span>Quick Bundles</span>
+                <h3>Explore quick bundles</h3>
+                <p>Start with a prepared basket, open the bundle details, then add or remove anything.</p>
               </div>
-              <div class="basket-line">
-                <span>Rice - 5kg</span>
-                <strong>1</strong>
+              <a class="entry-link" href="basket.html#bundles">See quick bundles</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="home-band restock-section" aria-labelledby="restockTitle" data-reveal>
+          <div class="section-heading">
+            <p class="eyebrow">What Restoq handles</p>
+            <h2 id="restockTitle">One restock flow for the places people actually live and work.</h2>
+            <p>
+              Start with the order type that matches your need, then adjust the
+              basket before checkout.
+            </p>
+          </div>
+          <div class="restock-lanes">
+            <article class="restock-lane">
+              <div class="lane-media" aria-hidden="true">
+                <img src="images/products/spaghetti-pack.png" alt="" />
+                <img src="images/products/toothpaste.png" alt="" />
+                <img src="images/products/dishwashing-liquid.png" alt="" />
               </div>
-              <div class="basket-line">
-                <span>Detergent - 2kg</span>
-                <strong>1</strong>
+              <div class="lane-copy">
+                <span>Households</span>
+                <h3>Everyday home essentials</h3>
+                <p>Foodstuff, toiletries, baby care, drinks, and cleaning supplies in one clear basket.</p>
               </div>
-              <div class="basket-total">
-                <span>Estimated total</span>
-                <strong>NGN 28,000</strong>
+            </article>
+            <article class="restock-lane">
+              <div class="lane-media" aria-hidden="true">
+                <img src="images/products/bottled-water.png" alt="" />
+                <img src="images/products/coffee.png" alt="" />
+                <img src="images/products/trash-bags.png" alt="" />
+              </div>
+              <div class="lane-copy">
+                <span>Companies</span>
+                <h3>Procurement without the back-and-forth</h3>
+                <p>Office pantry, facility supplies, cleaning items, and stationery requests organized quickly.</p>
+              </div>
+            </article>
+            <article class="restock-lane">
+              <div class="lane-media" aria-hidden="true">
+                <img src="images/products/malt-drink-pack.png" alt="" />
+                <img src="images/products/body-cream.png" alt="" />
+                <img src="images/products/bathing-soap-pack.png" alt="" />
+              </div>
+              <div class="lane-copy">
+                <span>Gifts + welfare</span>
+                <h3>Packages people can actually use</h3>
+                <p>Practical hampers and staff welfare packs built from real household and pantry essentials.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="process-section section-pad" id="how-it-works" data-reveal>
+          <div class="section-heading">
+            <p class="eyebrow">How it works</p>
+            <h2>From scattered shopping list to confirmed order.</h2>
+          </div>
+          <div class="process-track">
+            <article class="process-step">
+              <span aria-hidden="true">01</span>
+              <h3>Pick a starting point</h3>
+              <p>Choose individual products or begin with a quick bundle.</p>
+            </article>
+            <article class="process-step">
+              <span aria-hidden="true">02</span>
+              <h3>Shape the basket</h3>
+              <p>Add more, remove anything, and set the delivery rhythm.</p>
+            </article>
+            <article class="process-step">
+              <span aria-hidden="true">03</span>
+              <h3>Send for confirmation</h3>
+              <p>Restoq confirms availability, delivery fee, and payment on WhatsApp.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="trust-flow-section section-pad" id="after-order" data-reveal>
+          <div class="trust-flow-copy">
+            <p class="eyebrow">After you send the basket</p>
+            <h2>Restoq confirms the details before anything is final.</h2>
+            <p>
+              The website prepares the order. WhatsApp is where availability,
+              substitutions, delivery fee, and payment details are confirmed.
+            </p>
+          </div>
+          <div class="trust-flow">
+            <article>
+              <span>01</span>
+              <strong>Availability check</strong>
+              <p>We review the basket and confirm what is available.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <strong>Substitution options</strong>
+              <p>If an item is unavailable, we suggest a close alternative before finalizing.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <strong>Delivery fee</strong>
+              <p>Delivery is confirmed from your area and order size.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <strong>Payment confirmation</strong>
+              <p>Payment details are shared only after the order is confirmed.</p>
+            </article>
+          </div>
+          <p class="trust-footnote">
+            Minimum order is NGN 20,000. Product prices are treated as estimates until confirmation.
+          </p>
+        </section>
+
+        <section class="business-section business-band" id="business" data-reveal>
+          <div class="business-copy">
+            <p class="eyebrow">For businesses</p>
+            <h2>Procurement that feels lighter for companies and teams.</h2>
+            <p>
+              Restoq gives operations, admin, and facility teams a faster way to
+              collect recurring essentials into one order without chasing
+              suppliers for every small restock.
+            </p>
+            <a class="button button-primary" href="basket.html?for=business#products">Start a company basket</a>
+          </div>
+          <div class="procurement-board" aria-label="Business procurement categories">
+            <div>
+              <span>01</span>
+              <strong>Office pantry</strong>
+              <p>Water, beverages, tea, coffee, and meeting-room basics.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Facility supplies</strong>
+              <p>Cleaning products, tissue, hand wash, disinfectants, and waste bags.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Stationery</strong>
+              <p>Paper, pens, folders, markers, and desk essentials can be requested while listings are added.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>Staff welfare</strong>
+              <p>Monthly packs, appreciation hampers, onboarding gifts, and team bundles.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="package-feature-section" id="packages" data-reveal>
+          <div class="package-feature">
+            <div>
+              <p class="eyebrow">Packages</p>
+              <h2>Quick bundles give shoppers a useful head start.</h2>
+              <p>
+                Bundles are not locked. Customers can open a bundle, inspect the
+                items, add it to the basket, and still remove or add anything
+                before checkout.
+              </p>
+              <a class="button button-secondary" href="basket.html#bundles">See Quick Bundles</a>
+            </div>
+            <div class="package-stack" aria-label="Available bundle tiers">
+              <div>
+                <span>Starter</span>
+                <strong>NGN 30k</strong>
+                <small>Household, toiletries, cleaning</small>
+              </div>
+              <div>
+                <span>Team</span>
+                <strong>NGN 50k</strong>
+                <small>Office pantry, baby care, welfare</small>
+              </div>
+              <div>
+                <span>Large restock</span>
+                <strong>Up to NGN 100k</strong>
+                <small>Foodstuff and company packages</small>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section-pad how-section" id="how-it-works">
+        <section class="patron-section section-pad" id="reviews" data-reveal>
           <div class="section-heading">
-            <p class="eyebrow">How it works</p>
-            <h2>Tell us once. We help you restock.</h2>
+            <p class="eyebrow">Patrons</p>
+            <h2>Used by residents and teams who need essentials handled with less stress.</h2>
           </div>
-          <div class="steps-grid">
-            <article class="step-card">
-              <span>1</span>
-              <h3>Choose your essentials</h3>
-              <p>
-                Pick from toiletries, foodstuffs, baby items, beverages, pet
-                food, and other household needs.
-              </p>
-            </article>
-            <article class="step-card">
-              <span>2</span>
-              <h3>Set your rhythm</h3>
-              <p>Choose one-time, weekly, biweekly, or monthly restocking.</p>
-            </article>
-            <article class="step-card">
-              <span>3</span>
-              <h3>Confirm on WhatsApp</h3>
-              <p>
-                Your full order is sent to Loop on WhatsApp so we can confirm
-                availability, delivery, and payment.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section-pad testimonials-section" id="reviews">
-          <div class="section-heading">
-            <p class="eyebrow">Reviews</p>
-            <h2>Homes that restock with less stress.</h2>
-          </div>
-          <div class="testimonials-grid">
-            <article class="testimonial-card">
-              <div class="rating-row" aria-label="5 out of 5 stars">
-                <span aria-hidden="true">*****</span>
-              </div>
-              <p>
-                "Loop makes our monthly basics feel handled. I build the basket
-                once, send it on WhatsApp, and know what needs confirming."
-              </p>
-              <div class="testimonial-author">
-                <strong>Adaeze N.</strong>
-                <span>Family home, Lekki</span>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="rating-row" aria-label="5 out of 5 stars">
-                <span aria-hidden="true">*****</span>
-              </div>
-              <p>
-                "The repeat order idea is exactly what we needed for toiletries,
-                cleaning supplies, and the everyday things we forget."
-              </p>
-              <div class="testimonial-author">
-                <strong>Tomi A.</strong>
-                <span>Shared apartment, Yaba</span>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="rating-row" aria-label="5 out of 5 stars">
-                <span aria-hidden="true">*****</span>
-              </div>
-              <p>
-                "I like that payment and delivery are confirmed before anything
-                is final. It feels simple, clear, and practical."
-              </p>
-              <div class="testimonial-author">
-                <strong>Chinwe O.</strong>
-                <span>Busy household, Surulere</span>
-              </div>
-            </article>
+          <div class="patron-wall" aria-label="Restoq patron placeholders">
+            <div class="patron-track">
+              <span><strong>Oakwood Estate</strong><small>Residents</small></span>
+              <span><strong>The Cedar Residences</strong><small>Residents</small></span>
+              <span><strong>Primegate Homes</strong><small>Residents</small></span>
+              <span><strong>BluePeak Consulting</strong><small>Company</small></span>
+              <span><strong>Northstar Foods</strong><small>Company</small></span>
+              <span><strong>Verde Offices</strong><small>Office</small></span>
+              <span><strong>Haven Court</strong><small>Residents</small></span>
+              <span><strong>Atlas Workspace</strong><small>Company</small></span>
+            </div>
           </div>
         </section>
 
@@ -198,11 +387,11 @@
           </div>
           <div class="faq-list">
             <details>
-              <summary>How does Loop work?</summary>
+              <summary>How does Restoq work?</summary>
               <p>
-                You choose the items you regularly need at home, select how
-                often you want them, and send your order to Loop on WhatsApp. We
-                confirm availability, delivery, and payment with you.
+                You choose the items or bundles you need, review your basket,
+                and send the order to Restoq on WhatsApp. We confirm
+                availability, delivery, and payment with you.
               </p>
             </details>
             <details>
@@ -213,17 +402,17 @@
               </p>
             </details>
             <details>
-              <summary>Can I change my recurring order?</summary>
+              <summary>Can homes and businesses order?</summary>
               <p>
-                Yes. You can add, remove, pause, or change your items before
-                each delivery.
+                Yes. Restoq supports household restocks, office essentials,
+                and staff welfare packages.
               </p>
             </details>
             <details>
-              <summary>Can I make a one-time order?</summary>
+              <summary>Can I change a bundle?</summary>
               <p>
-                Yes. You can choose one-time order if you do not want recurring
-                delivery yet.
+                Yes. Bundles are only a starting point. You can add more items
+                or remove anything before checkout.
               </p>
             </details>
             <details>
@@ -241,11 +430,11 @@
         <div>
           <img
             class="footer-logo"
-            src="images/loop-logo-transparent.png"
-            alt="Loop - Never run out."
+            src="images/restoq-logo.png"
+            alt="Restoq - Never run out."
           />
         </div>
-        <p>Home essentials ordered online, confirmed on WhatsApp.</p>
+        <p>Essentials for homes and businesses, ordered online and confirmed on WhatsApp.</p>
       </footer>
     </div>
     <script src="site.js"></script>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate site product data from the Loop Excel catalog.
+Generate site product data from the Restoq Excel catalog.
 
 Only rows with local downloaded Product Image paths are exported. Rows that
 still contain external search formulas are intentionally skipped so the site
@@ -34,7 +34,7 @@ REQUIRED_COLUMNS = [
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate catalog-products.js from the Loop workbook.")
+    parser = argparse.ArgumentParser(description="Generate catalog-products.js from the Restoq workbook.")
     parser.add_argument("--workbook", type=Path, default=DEFAULT_WORKBOOK)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
@@ -106,7 +106,7 @@ def main() -> int:
 
     payload = json.dumps(products, ensure_ascii=False, indent=2)
     args.output.write_text(
-        "window.LOOP_CATALOG_PRODUCTS = "
+        "window.RESTOQ_CATALOG_PRODUCTS = "
         + payload
         + ";\n",
         encoding="utf-8",

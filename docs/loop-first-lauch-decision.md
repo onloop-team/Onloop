@@ -10,33 +10,35 @@ Accepted
 
 ## Decision Owners
 
-Loop website maintainers
+Restoq website maintainers
 
 ## Context
 
-Loop is a lightweight home essentials ordering website. The current product experience lets customers browse household items, build a basket, choose a delivery rhythm, review order details, and send the completed order to Loop through WhatsApp for manual confirmation.
+Restoq is a lightweight essentials ordering website for households and businesses. The current product experience lets customers browse products, start from quick bundles, build a basket, choose a delivery rhythm, review order details, and send the completed order to Restoq through WhatsApp for manual confirmation.
 
-The website is implemented as a static frontend with four primary files:
+The website is implemented as a static frontend with five primary files:
 
 - `index.html` defines the informational home page, including hero, how-it-works, FAQ, and links into ordering.
 - `basket.html` defines the ordering page, including product browsing, cart, onboarding, review, checkout form, and script entry point.
 - `styles.css` defines responsive layout, brand presentation, product cards, carts, modals, forms, and mobile behavior.
-- `app.js` owns product data, UI state, rendering, validation, onboarding persistence, basket logic, pricing, and WhatsApp handoff.
+- `catalog-products.js` owns the generated product catalog and image paths.
+- `app.js` owns UI state, rendering, validation, onboarding persistence, basket logic, pricing, bundle logic, product filtering, and WhatsApp handoff.
 
 There is no build system, package manager, backend API, database, server-side rendering layer, payment provider, or client-side framework in the current implementation. The site can run from a static file server such as `python -m http.server`.
 
-The business flow is intentionally WhatsApp-first. The website collects enough information to prepare a structured order message, but Loop confirms availability, delivery fees, and payment details manually after the customer opens WhatsApp.
+The business flow is intentionally WhatsApp-first. The website collects enough information to prepare a structured order message, but Restoq confirms availability, delivery fees, and payment details manually after the customer opens WhatsApp.
 
 ## Decision
 
-Use a static HTML, CSS, and vanilla JavaScript architecture for the current Loop website.
+Use a static HTML, CSS, and vanilla JavaScript architecture for the current Restoq website.
 
-Keep product catalog data, cart state, pricing calculations, recurrence selection, onboarding logic, checkout validation, and WhatsApp message construction in `app.js`, loaded only by `basket.html`.
+Keep cart state, pricing calculations, recurrence selection, order type selection, onboarding logic, checkout validation, and WhatsApp message construction in `app.js`, loaded only by `basket.html`. Keep generated product catalog data in `catalog-products.js`.
 
 Keep persistent browser state limited to onboarding localStorage values:
 
-- `loop_has_seen_onboarding`: set to `true` only when the customer clicks `Start shopping`.
-- `loop_onboarding_close_count`: incremented when the customer dismisses onboarding through X, backdrop, or Escape.
+- `restoq_has_seen_onboarding`: set to `true` only when the customer clicks `Start shopping`.
+- `restoq_onboarding_close_count`: incremented when the customer dismisses onboarding through X, backdrop, or Escape.
+- Legacy `loop_*` onboarding values may be migrated for returning visitors.
 
 Keep cart state in memory only. Do not persist basket contents across reloads yet.
 
@@ -46,8 +48,9 @@ Use static image assets under `images/` for the brand mark and product visuals. 
 
 ## Goals
 
-- Present Loop as a polished, warm, and trustworthy home restock assistant.
+- Present Restoq as a polished, warm, and trustworthy restock assistant for households and businesses.
 - Let customers build an order with minimal friction on desktop and mobile.
+- Support quick bundles, business procurement requests, and staff welfare package discovery.
 - Support recurring ordering language without requiring account creation.
 - Avoid backend complexity while the ordering operation is still manually confirmed.
 - Keep deployment simple enough for static hosting.
@@ -67,7 +70,7 @@ Use static image assets under `images/` for the brand mark and product visuals. 
 ## Current User Flow
 
 1. Customer lands on the homepage.
-2. Customer follows a CTA to `basket.html`.
+2. Customer follows a household, business, or quick bundle CTA to `basket.html`.
 3. If eligible, customer sees the onboarding modal on the basket page.
 4. Customer clicks `Start shopping` or dismisses onboarding.
 5. Customer browses products by category or search.
@@ -75,10 +78,12 @@ Use static image assets under `images/` for the brand mark and product visuals. 
 7. Cart summary updates with subtotal, 6 percent service charge, grand total, and minimum order validation.
 8. Customer opens the order review modal.
 9. Customer chooses recurrence: one-time, weekly, biweekly, or monthly.
-10. Customer enters required details: full name, phone number, and delivery area.
-11. Customer optionally adds full address, preferred delivery day, and notes.
-12. Customer clicks `Checkout on WhatsApp`.
-13. The browser opens WhatsApp with a prefilled structured order message.
+10. Customer confirms order type: household or business.
+11. Customer enters required details: full name, phone number, and delivery area.
+12. Business customers also enter company name and choose whether invoice/receipt is needed.
+13. Customer optionally adds full address, preferred delivery day, and notes.
+14. Customer clicks `Checkout on WhatsApp`.
+15. The browser opens WhatsApp with a prefilled structured order message.
 
 ## Architecture Details
 
@@ -87,8 +92,10 @@ Use static image assets under `images/` for the brand mark and product visuals. 
 `index.html` contains the semantic home page:
 
 - Sticky header with logo, navigation links, and primary CTA.
-- Hero section explaining the Loop value proposition.
+- Hero section explaining the Restoq value proposition.
+- Customer entry paths for households, businesses, and quick bundles.
 - How-it-works section.
+- Post-order trust section explaining availability, substitutions, delivery fee, and payment confirmation.
 - FAQ section.
 - Footer.
 
@@ -192,11 +199,13 @@ Required fields:
 - Full name.
 - Phone number.
 - Delivery area/location.
+- Company name when the order type is business.
 
 Optional fields:
 
 - Full delivery address.
 - Preferred delivery day.
+- Invoice/receipt preference for business orders.
 - Additional note.
 
 Before checkout, validation confirms:
@@ -208,15 +217,17 @@ Before checkout, validation confirms:
 
 After validation, `buildWhatsAppMessage` creates a structured plain text message containing customer details, recurrence, item lines, subtotal, service charge, grand total, and notes. `submitCheckout` opens WhatsApp in a new tab.
 
+For business orders, the WhatsApp message is labeled as a business procurement request and includes company name plus invoice/receipt preference.
+
 ### Onboarding
 
-The onboarding modal is designed to introduce first-time customers to Loop without permanently hiding the modal after a quick dismissal.
+The onboarding modal is designed to introduce first-time customers to Restoq without permanently hiding the modal after a quick dismissal.
 
 The accepted persistence rules are:
 
-- Show onboarding when `loop_has_seen_onboarding` is not `true` and `loop_onboarding_close_count` is less than `3`.
-- Set `loop_has_seen_onboarding=true` only when the customer clicks `Start shopping`.
-- Increment `loop_onboarding_close_count` for X, backdrop click, and Escape.
+- Show onboarding when `restoq_has_seen_onboarding` is not `true` and `restoq_onboarding_close_count` is less than `3`.
+- Set `restoq_has_seen_onboarding=true` only when the customer clicks `Start shopping`.
+- Increment `restoq_onboarding_close_count` for X, backdrop click, and Escape.
 - Stop showing onboarding after 3 soft dismissals.
 
 This gives customers multiple chances to understand the service while respecting repeated dismissal intent.
@@ -257,7 +268,7 @@ Risks and constraints:
 - Product data is public and client-side.
 - There is no server-side validation or audit trail.
 
-If Loop adds payments, automated order acceptance, inventory reservation, or customer accounts, this architecture must be revisited.
+If Restoq adds payments, automated order acceptance, inventory reservation, or customer accounts, this architecture must be revisited.
 
 ## Performance Considerations
 
@@ -320,7 +331,7 @@ React, Vue, Svelte, or similar frameworks would improve component structure as t
 
 Rejected for now.
 
-A backend would support persisted carts, validated pricing, order storage, inventory, and admin workflows. The current operational model confirms orders manually on WhatsApp, so a backend would be premature unless Loop needs reporting, payment, automation, or scale.
+A backend would support persisted carts, validated pricing, order storage, inventory, and admin workflows. The current operational model confirms orders manually on WhatsApp, so a backend would be premature unless Restoq needs reporting, payment, automation, or scale.
 
 ### Use a Hosted Commerce Platform
 
@@ -364,7 +375,7 @@ Negative consequences:
 Revisit this ADR if any of the following become true:
 
 - Product catalog grows enough to need admin management.
-- Loop needs real-time inventory or delivery fee calculation.
+- Restoq needs real-time inventory or delivery fee calculation.
 - Orders must be stored before WhatsApp handoff.
 - Customers need accounts or recurring subscription management.
 - Payments move onto the website.
@@ -393,8 +404,8 @@ Current verification should include:
 - Basket page loads over local HTTP with status `200`.
 - Home page CTAs navigate to `basket.html`.
 - Onboarding appears for first eligible visit on `basket.html`.
-- `Start shopping` sets `loop_has_seen_onboarding=true`, closes the modal, and scrolls to products.
-- X, backdrop, and Escape increment `loop_onboarding_close_count`.
+- `Start shopping` sets `restoq_has_seen_onboarding=true`, closes the modal, and scrolls to products.
+- X, backdrop, and Escape increment `restoq_onboarding_close_count`.
 - Onboarding reappears after 1 or 2 soft dismissals.
 - Onboarding stops appearing after 3 soft dismissals.
 - Products render with images and prices.

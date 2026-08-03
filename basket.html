@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Loop - Build your basket.</title>
+    <title>Restoq - Build your basket.</title>
     <meta
       name="description"
-      content="Build your Loop basket of home essentials and send your order to WhatsApp for confirmation."
+      content="Build your Restoq basket of home, office, and welfare essentials and send your order to WhatsApp for confirmation."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="images/favicon.ico" sizes="any" />
     <link rel="icon" href="images/favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css" />
@@ -25,19 +24,27 @@
   <body>
     <div class="page-shell">
       <header class="site-header">
-        <a class="brand" href="index.html#top" aria-label="Loop home">
+        <a class="brand" href="index.html#top" aria-label="Restoq home">
           <img
             class="brand-logo"
-            src="images/loop-logo-transparent.png"
-            alt="Loop - Never run out."
+            src="images/restoq-logo.png"
+            alt="Restoq - Never run out."
           />
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="index.html#how-it-works">How it works</a>
+          <a href="index.html#business">For business</a>
           <a href="#products">Products</a>
+          <a href="index.html#packages">Packages</a>
           <a href="index.html#faq">FAQ</a>
         </nav>
-        <a class="nav-cta" href="#products">Start order</a>
+        <a
+          class="nav-cta"
+          href="https://wa.me/2348119636331?text=Hello%20Restoq%2C%20I%20would%20like%20to%20place%20an%20order%20for%20essentials."
+          target="_blank"
+          rel="noopener noreferrer"
+          >Order on WhatsApp</a
+        >
         <button
           class="menu-toggle"
           type="button"
@@ -52,10 +59,18 @@
         <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
           <a href="index.html#top">Home</a>
           <a href="index.html#how-it-works">How it works</a>
+          <a href="index.html#business">For business</a>
           <a href="#products">Products</a>
-          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#packages">Packages</a>
+          <a href="index.html#reviews">Patrons</a>
           <a href="index.html#faq">FAQ</a>
-          <a class="mobile-menu-cta" href="#products">Start order</a>
+          <a
+            class="mobile-menu-cta"
+            href="https://wa.me/2348119636331?text=Hello%20Restoq%2C%20I%20would%20like%20to%20place%20an%20order%20for%20essentials."
+            target="_blank"
+            rel="noopener noreferrer"
+            >Order on WhatsApp</a
+          >
         </nav>
       </header>
 
@@ -69,7 +84,7 @@
                     id="productSearch"
                     type="search"
                     aria-label="Search products"
-                    placeholder="Search rice, baby wipes, detergent..."
+                    placeholder="Search rice, tissue, water, soap..."
                     autocomplete="off"
                   />
                 </label>
@@ -81,24 +96,26 @@
                 ></div>
               </div>
 
-              <section class="bundle-section" aria-labelledby="bundleTitle">
+              <section class="bundle-section" id="bundles" aria-labelledby="bundleTitle">
                 <div class="bundle-heading">
                   <div>
                     <h2 id="bundleTitle">Quick Bundles</h2>
                   </div>
-                  <p>Add a bundle, then adjust.</p>
+                  <p>Start faster, then adjust.</p>
                 </div>
                 <div class="bundle-grid" id="bundleGrid"></div>
               </section>
 
               <div class="product-scroll">
                 <div class="product-grid" id="productGrid"></div>
+                <nav
+                  class="product-pagination"
+                  id="productPagination"
+                  aria-label="Product pages"
+                  hidden
+                ></nav>
               </div>
             </div>
-
-            <aside class="desktop-cart" aria-label="Cart summary">
-              <div id="desktopCart"></div>
-            </aside>
           </div>
         </section>
       </main>
@@ -107,15 +124,56 @@
         <div>
           <img
             class="footer-logo"
-            src="images/loop-logo-transparent.png"
-            alt="Loop - Never run out."
+            src="images/restoq-logo.png"
+            alt="Restoq - Never run out."
           />
         </div>
-        <p>Home essentials ordered online, confirmed on WhatsApp.</p>
+        <p>Essentials for homes and businesses, ordered online and confirmed on WhatsApp.</p>
       </footer>
     </div>
 
     <div class="mobile-cart-bar" id="mobileCartBar"></div>
+    <button
+      class="back-to-top-fab"
+      id="backToTopButton"
+      type="button"
+      aria-label="Back to top"
+      hidden
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 19V5" />
+        <path d="m6 11 6-6 6 6" />
+      </svg>
+    </button>
+
+    <div
+      class="modal-backdrop hidden"
+      id="bundleModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="bundleDetailTitle"
+    >
+      <div class="bundle-detail-panel">
+        <div class="bundle-detail-header">
+          <div>
+            <p class="eyebrow" id="bundleDetailMeta">Quick Bundle</p>
+            <h2 id="bundleDetailTitle">Bundle details</h2>
+          </div>
+          <button class="icon-button" id="closeBundleButton" aria-label="Close bundle details">
+            x
+          </button>
+        </div>
+        <div class="bundle-detail-body" id="bundleDetailBody"></div>
+        <div class="bundle-detail-footer">
+          <button class="button button-secondary" id="cancelBundleButton" type="button">
+            Keep browsing
+          </button>
+          <button class="button button-primary" id="addSelectedBundleButton" type="button">
+            Add bundle
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div
       class="modal-backdrop hidden"
@@ -174,6 +232,11 @@
           </section>
 
           <section class="review-section">
+            <h3>Order type</h3>
+            <div class="order-type-grid" id="orderTypeOptions"></div>
+          </section>
+
+          <section class="review-section">
             <h3>Your details</h3>
             <form class="checkout-form" id="checkoutForm" novalidate>
               <label>
@@ -199,6 +262,20 @@
                 Preferred delivery day
                 <input name="preferredDeliveryDay" type="text" placeholder="e.g. Saturday morning" />
               </label>
+              <div class="business-fields hidden" id="businessFields">
+                <label>
+                  Company name
+                  <input name="companyName" type="text" autocomplete="organization" />
+                  <span class="field-error" data-error-for="companyName"></span>
+                </label>
+                <label>
+                  Invoice/receipt needed
+                  <select name="invoiceNeeded">
+                    <option value="Yes">Yes, include invoice/receipt</option>
+                    <option value="No">No, not needed</option>
+                  </select>
+                </label>
+              </div>
               <label class="form-wide">
                 Additional note
                 <textarea name="note" rows="3"></textarea>

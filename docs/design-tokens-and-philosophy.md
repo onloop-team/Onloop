@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This document defines the visual language for the Loop website. It should guide future changes to color, spacing, typography, layout, components, and interaction states so the site continues to feel consistent.
+This document defines the visual language for the Restoq website. It should guide future changes to color, spacing, typography, layout, components, and interaction states so the site continues to feel consistent.
 
-Loop should feel calm, practical, warm, and trustworthy. It is a home essentials ordering experience, not a loud marketplace or a generic ecommerce template. The UI should help customers quickly understand the service, build a basket, and continue to WhatsApp with confidence.
+Restoq should feel calm, practical, warm, and trustworthy. It is an essentials ordering experience for households and businesses, not a loud marketplace or a generic ecommerce template. The UI should help customers quickly understand the service, build a basket, and continue to WhatsApp with confidence.
 
 ## Design Principles
 
@@ -16,7 +16,7 @@ Use clear section hierarchy, compact product information, predictable controls, 
 
 ### Warmth Without Noise
 
-Loop should feel human and welcoming, especially in the hero and onboarding modal. Warmth comes from cream backgrounds, amber accents, soft cards, product imagery, and friendly copy.
+Restoq should feel human and welcoming, especially in the hero and onboarding modal. Warmth comes from cream backgrounds, amber accents, soft cards, product imagery, and friendly copy.
 
 Avoid excessive decoration, heavy gradients, oversized illustrations, or visual clutter that competes with the ordering task.
 
@@ -34,7 +34,7 @@ Layouts should collapse intentionally rather than simply shrinking desktop patte
 
 ## Source Tokens
 
-Current tokens are defined in `styles.css` under `:root`.
+Current tokens are defined in `styles.css` under `:root`. The variable names still use the legacy `--loop-*` prefix for code compatibility, but they now represent the Restoq visual system.
 
 ```css
 :root {
@@ -339,6 +339,16 @@ Required cart information:
 
 Checkout remains WhatsApp-first, so wording must avoid implying final payment or guaranteed delivery.
 
+Business orders should ask for only the extra information needed to make the WhatsApp handoff useful: company name and invoice/receipt preference. Avoid turning business checkout into a long procurement form until there is backend support.
+
+## Customer Path Clarity
+
+The site should present clear entry paths for households, businesses, and quick bundles. Estate names may appear as social proof for resident usage, but Restoq should not present estate ordering as a separate service unless the business model changes.
+
+Every ordering path should preserve the ability to pick products from scratch. Bundles are a starting point, not a locked cart.
+
+The product page should stay as one direct ordering surface. Do not ask customers to interpret an active household or business path before they can search, browse bundles, and add products. Business-specific details belong in checkout, where they are only requested when useful for the WhatsApp handoff.
+
 ## Onboarding Modal Design
 
 The onboarding modal should feel polished and welcoming without blocking the customer forever.
@@ -418,7 +428,7 @@ Current mobile viewport behavior disables pinch zoom to keep the basket interfac
 
 ## Content Voice
 
-Loop copy should be:
+Restoq copy should be:
 
 - Direct.
 - Warm.

@@ -72,6 +72,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--failure-log", type=Path, default=DEFAULT_FAILURE_LOG)
     parser.add_argument("--limit", type=int, default=None, help="Process at most N rows.")
+    parser.add_argument("--row-start", type=int, default=None, help="First worksheet row to process.")
+    parser.add_argument("--row-end", type=int, default=None, help="Last worksheet row to process.")
     parser.add_argument("--delay", type=float, default=0.8, help="Delay between rows in seconds.")
     parser.add_argument("--save-every", type=int, default=25, help="Save workbook progress every N updates.")
     parser.add_argument("--overwrite", action="store_true", help="Replace existing Product Image values.")
@@ -300,7 +302,10 @@ def main() -> int:
         updates_since_save = 0
         print(f"  progress saved to {output_workbook}", flush=True)
 
-    for row_index in range(2, sheet.max_row + 1):
+    start_row = max(2, args.row_start or 2)
+    end_row = min(sheet.max_row, args.row_end or sheet.max_row)
+
+    for row_index in range(start_row, end_row + 1):
         if args.limit is not None and processed >= args.limit:
             break
 
