@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Restoq - Build your basket.</title>
+    <title>Restoq - Quick bundles.</title>
     <meta
       name="description"
-      content="Build your Restoq basket of home, office, and welfare essentials and send your order to WhatsApp for confirmation."
+      content="Explore curated Restoq bundles for foodstuff, drinks, stationery, office pantry, cleaning, baby care, and household essentials."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css?v=20260810-review-items-v2" />
   </head>
-  <body>
+  <body class="bundle-page">
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="index.html#top" aria-label="Restoq home">
@@ -34,8 +34,8 @@
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="index.html#how-it-works">How it works</a>
           <a href="index.html#business">For business</a>
-          <a href="#products">Products</a>
-          <a href="index.html#packages">Packages</a>
+          <a href="basket.html#products">Products</a>
+          <a href="#bundles">Bundles</a>
           <a href="index.html#faq">FAQ</a>
         </nav>
         <a
@@ -64,8 +64,8 @@
           <a href="index.html#top">Home</a>
           <a href="index.html#how-it-works">How it works</a>
           <a href="index.html#business">For business</a>
-          <a href="#products">Products</a>
-          <a href="index.html#packages">Packages</a>
+          <a href="basket.html#products">Products</a>
+          <a href="#bundles">Bundles</a>
           <a href="index.html#faq">FAQ</a>
           <a
             class="mobile-menu-cta"
@@ -82,52 +82,42 @@
       </header>
 
       <main id="top">
-        <section class="section-pad products-section" id="products">
-          <div class="products-layout">
-            <div class="products-main">
-              <div class="basket-controls">
-                <label class="search-field" for="productSearch">
-                  <input
-                    id="productSearch"
-                    type="search"
-                    aria-label="Search products"
-                    placeholder="Search rice, tissue, water, soap..."
-                    autocomplete="off"
-                  />
-                </label>
-
-                <div
-                  class="category-tabs"
-                  id="categoryTabs"
-                  aria-label="Product categories"
-                ></div>
-              </div>
-
-              <section class="bundle-section" id="bundles" aria-labelledby="bundleTitle">
-                <div class="bundle-heading">
-                  <div>
-                    <h2 id="bundleTitle">Quick Bundles</h2>
-                  </div>
-                  <a class="bundle-view-link" href="bundles.html">View all</a>
-                </div>
-                <div class="bundle-grid" id="bundleGrid" data-bundle-limit="8"></div>
-              </section>
-
-              <div class="product-list-heading" aria-label="Product catalog">
-                <h2>All Essentials</h2>
-              </div>
-
-              <div class="product-scroll">
-                <div class="product-grid" id="productGrid"></div>
-                <nav
-                  class="product-pagination"
-                  id="productPagination"
-                  aria-label="Product pages"
-                  hidden
-                ></nav>
-              </div>
+        <section
+          class="bundle-section bundle-catalog-section"
+          id="bundles"
+          data-hide-on-search="false"
+          aria-labelledby="bundleCatalogTitle"
+        >
+          <div class="bundle-page-heading">
+            <div>
+              <p class="eyebrow">Curated catalog</p>
+              <h2 id="bundleCatalogTitle">Bundle catalog</h2>
             </div>
+            <p id="bundleCountMeta">18 bundles</p>
           </div>
+
+          <div class="bundle-page-controls">
+            <label class="search-field" for="bundleSearch">
+              <input
+                id="bundleSearch"
+                type="search"
+                aria-label="Search bundles"
+                placeholder="Search foodstuff, wine, stationery..."
+                autocomplete="off"
+              />
+            </label>
+            <div
+              class="bundle-filter-tabs"
+              id="bundleFilterTabs"
+              aria-label="Bundle categories"
+            ></div>
+          </div>
+
+          <div
+            class="bundle-grid bundle-page-grid"
+            id="bundleGrid"
+            data-bundle-scope="all"
+          ></div>
         </section>
       </main>
 
@@ -196,30 +186,6 @@
     </div>
 
     <div
-      class="modal-backdrop onboarding-backdrop hidden"
-      id="onboardingModal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="onboardingTitle"
-    >
-      <div class="onboarding-card">
-        <button class="icon-button modal-close" id="skipOnboardingTop" aria-label="Close onboarding">
-          <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M7 7l10 10" />
-            <path d="M17 7 7 17" />
-          </svg>
-        </button>
-        <div class="onboarding-progress" id="onboardingProgress"></div>
-        <div id="onboardingContent"></div>
-        <div class="modal-actions">
-          <button class="button button-primary" id="startShoppingButton">
-            Start shopping
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div
       class="modal-backdrop hidden"
       id="reviewModal"
       role="dialog"
@@ -232,7 +198,7 @@
             <p class="eyebrow">Order review</p>
             <h2 id="reviewTitle">Review your basket</h2>
           </div>
-          <button class="icon-button review-back-button" id="closeReviewButton" aria-label="Back to basket">
+          <button class="icon-button review-back-button" id="closeReviewButton" aria-label="Back to bundles">
             <span class="review-back-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false">
                 <path d="M15 18 9 12l6-6" />
@@ -286,7 +252,7 @@
                 Full delivery address
                 <input name="address" type="text" />
               </label>
-              <label class="form-wide preferred-delivery-field">
+              <label>
                 Preferred delivery day
                 <input name="preferredDeliveryDay" type="text" placeholder="e.g. Saturday morning" />
               </label>
