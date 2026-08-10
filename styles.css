@@ -2036,6 +2036,8 @@ h3 {
 }
 
 .product-list-heading {
+  display: grid;
+  gap: 4px;
   margin: 6px 0 14px;
 }
 
@@ -2045,6 +2047,14 @@ h3 {
   font-size: clamp(1rem, 1.6vw, 1.18rem);
   font-weight: 780;
   letter-spacing: 0;
+}
+
+.product-list-heading p {
+  max-width: 520px;
+  color: var(--muted-text);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
 }
 
 .product-grid {
