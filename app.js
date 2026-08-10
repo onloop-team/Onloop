@@ -249,6 +249,23 @@ const bundles = [
     ],
   },
   {
+    id: "menstrual-care",
+    name: "Menstrual Care",
+    accent: "Menstrual Care",
+    tier: "NGN 20k",
+    summary: "One pad brand with simple hygiene basics for period care restocks.",
+    icon: "heart",
+    items: [
+      { productId: "always-cotton-soft-sanitary-pads-16-pads", quantity: 2 },
+      { productId: "molfix-baby-wipes-80-wipes", quantity: 2 },
+      { productId: "nice-facial-tissue-1-box", quantity: 2 },
+      { productId: "cotton-wool-roll-500g", quantity: 1 },
+      { productId: "cotton-buds-200-sticks", quantity: 1 },
+      { productId: "medisoft-hand-sanitizer-500ml", quantity: 1 },
+      { productId: "dettol-liquid-hand-wash-200ml", quantity: 1 },
+    ],
+  },
+  {
     id: "cleaning-restock",
     name: "Cleaning Restock",
     accent: "Facility",
