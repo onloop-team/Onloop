@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "2348119636331";
+const WHATSAPP_NUMBER = "2348021438824";
 const BRAND_NAME = "Restoq";
 const ONBOARDING_KEY = "restoq_has_seen_onboarding";
 const ONBOARDING_CLOSE_COUNT_KEY = "restoq_onboarding_close_count";
@@ -42,7 +42,6 @@ const categoryLabels = {
   Beverages: "Drinks",
   Skincare: "Skincare & Personal Care",
   Fragrance: "Skincare & Personal Care",
-  "Dog Food": "Pets",
 };
 
 const getDisplayCategory = (category) => categoryLabels[category] || category;
@@ -194,7 +193,7 @@ const bundles = [
       { productId: "power-oil-vegetable-oil-3l", quantity: 1 },
       { productId: "golden-penny-semovita-1kg", quantity: 2 },
       { productId: "de-rica-tomato-paste-210g", quantity: 2 },
-      { productId: "dangote-salt-1kg", quantity: 1 },
+      { productId: "dangote-salt-1kg", quantity: 2 },
     ],
   },
   {
@@ -220,24 +219,100 @@ const bundles = [
     name: "Foodstuff Hamper",
     accent: "Hamper",
     tier: "NGN 200k",
-    summary: "A premium foodstuff hamper for homes, staff welfare, and stocked kitchens.",
+    summary: "A broad premium pantry hamper without competing versions of the same staple.",
     icon: "gift",
     items: [
-      { productId: "basmati-rice-5kg", quantity: 1 },
-      { productId: "aeroplane-basmati-rice-5kg", quantity: 1 },
-      { productId: "gino-viet-fragrant-kdm-rice-5kg", quantity: 1 },
-      { productId: "caprice-parboiled-rice-5kg", quantity: 3 },
+      { productId: "basmati-rice-5kg", quantity: 2 },
       { productId: "indomie-super-pack-chicken-120g-x-40", quantity: 2 },
       { productId: "kings-vegetable-oil-5l", quantity: 2 },
-      { productId: "gino-tomato-paste-sachet-70g-x-50", quantity: 1 },
-      { productId: "milo-food-drink-500g", quantity: 1 },
+      { productId: "golden-penny-spaghetti-500g", quantity: 6 },
+      { productId: "gino-tomato-paste-sachet-70g-x-50", quantity: 2 },
+      { productId: "maggi-chicken-cubes-100-cubes", quantity: 2 },
+      { productId: "dangote-salt-1kg", quantity: 2 },
+      { productId: "golden-morn-cereal-900g", quantity: 2 },
+      { productId: "peak-filled-milk-powder-400g", quantity: 1 },
+      { productId: "golden-penny-white-granulated-sugar-1-kg-1kg", quantity: 1 },
+    ],
+  },
+  {
+    id: "everyday-fruit-pack",
+    name: "Everyday Fruit Pack",
+    accent: "Fresh Market",
+    tier: "NGN 20k",
+    summary: "A colourful fruit-only restock for homes, offices, and shared kitchens.",
+    icon: "basket",
+    items: [
+      { productId: "apples-1-kg", quantity: 1 },
+      { productId: "bananas-1-kg", quantity: 3 },
+      { productId: "oranges-1-kg", quantity: 3 },
+      { productId: "watermelon-1-kg", quantity: 2 },
+      { productId: "pineapple-1-kg", quantity: 2 },
+    ],
+  },
+  {
+    id: "soup-stew-fresh-pack",
+    name: "Soup & Stew Fresh Pack",
+    accent: "Fresh Market",
+    tier: "NGN 35k",
+    summary: "Fresh peppers, aromatics, and vegetables for Nigerian soups and stews.",
+    icon: "basket",
+    items: [
+      { productId: "fresh-tomatoes-1-kg", quantity: 3 },
+      { productId: "red-onions-1-kg", quantity: 2 },
+      { productId: "scotch-bonnet-pepper-1-kg", quantity: 1 },
+      { productId: "red-bell-pepper-tatashe-1-kg", quantity: 1 },
+      { productId: "cayenne-pepper-shombo-1-kg", quantity: 1 },
+      { productId: "fresh-ginger-1-kg", quantity: 1 },
+      { productId: "fresh-garlic-1-kg", quantity: 1 },
+    ],
+  },
+  {
+    id: "family-cooking-restock",
+    name: "Family Cooking Restock",
+    accent: "Fresh Market",
+    tier: "NGN 80k",
+    summary: "Fresh ingredients combined with practical pantry staples for family meals.",
+    icon: "store",
+    items: [
+      { productId: "caprice-parboiled-rice-5kg", quantity: 2 },
+      { productId: "power-oil-vegetable-oil-3l", quantity: 2 },
+      { productId: "golden-penny-spaghetti-500g", quantity: 4 },
+      { productId: "indomie-instant-noodles-chicken-70g-x-40", quantity: 1 },
+      { productId: "fresh-tomatoes-1-kg", quantity: 2 },
+      { productId: "red-onions-1-kg", quantity: 2 },
+      { productId: "scotch-bonnet-pepper-1-kg", quantity: 1 },
+      { productId: "yam-1-kg", quantity: 2 },
+      { productId: "ripe-plantain-1-kg", quantity: 2 },
+      { productId: "maggi-chicken-cubes-100-cubes", quantity: 1 },
+      { productId: "dangote-salt-1kg", quantity: 1 },
+    ],
+  },
+  {
+    id: "protein-pantry-pack",
+    name: "Protein & Pantry Pack",
+    accent: "Fresh Market",
+    tier: "NGN 100k",
+    summary: "Chicken, beef, fish, fresh produce, and pantry staples for a fuller restock.",
+    icon: "store",
+    items: [
+      { productId: "packaged-chicken-1-kg", quantity: 2 },
+      { productId: "beef-1-kg", quantity: 2 },
+      { productId: "catfish-1-kg", quantity: 2 },
+      { productId: "caprice-parboiled-rice-5kg", quantity: 2 },
+      { productId: "power-oil-vegetable-oil-3l", quantity: 2 },
+      { productId: "fresh-tomatoes-1-kg", quantity: 2 },
+      { productId: "red-onions-1-kg", quantity: 2 },
+      { productId: "scotch-bonnet-pepper-1-kg", quantity: 1 },
+      { productId: "yam-1-kg", quantity: 2 },
+      { productId: "maggi-chicken-cubes-100-cubes", quantity: 1 },
+      { productId: "dangote-salt-1kg", quantity: 1 },
     ],
   },
   {
     id: "toiletries-core",
     name: "Toiletries Core",
     accent: "Bathroom",
-    tier: "NGN 30k",
+    tier: "NGN 35k",
     summary: "Bathroom basics for homes and shared apartments.",
     icon: "droplet",
     items: [
@@ -252,15 +327,14 @@ const bundles = [
     id: "menstrual-care",
     name: "Menstrual Care",
     accent: "Menstrual Care",
-    tier: "NGN 20k",
-    summary: "One pad brand with simple hygiene basics for period care restocks.",
+    tier: "NGN 25k",
+    summary: "One pad option with practical hygiene and comfort essentials.",
     icon: "heart",
     items: [
-      { productId: "always-cotton-soft-sanitary-pads-16-pads", quantity: 2 },
+      { productId: "always-cotton-soft-sanitary-pads-16-pads", quantity: 3 },
       { productId: "molfix-baby-wipes-80-wipes", quantity: 2 },
-      { productId: "nice-facial-tissue-1-box", quantity: 2 },
+      { productId: "nice-facial-tissue-1-box", quantity: 1 },
       { productId: "cotton-wool-roll-500g", quantity: 1 },
-      { productId: "cotton-buds-200-sticks", quantity: 1 },
       { productId: "medisoft-hand-sanitizer-500ml", quantity: 1 },
       { productId: "dettol-liquid-hand-wash-200ml", quantity: 1 },
     ],
@@ -300,7 +374,7 @@ const bundles = [
     name: "Baby Care",
     accent: "Baby",
     tier: "NGN 50k",
-    summary: "Baby care basics for a quick family restock.",
+    summary: "A balanced diaper, feeding, bath, and skincare restock for baby care.",
     icon: "heart",
     items: [
       { productId: "pampers-baby-dry-diapers-medium-64-pieces", quantity: 1 },
@@ -308,7 +382,7 @@ const bundles = [
       { productId: "johnson-s-baby-bath-500ml", quantity: 1 },
       { productId: "johnson-s-baby-lotion-300ml", quantity: 1 },
       { productId: "johnson-s-baby-oil-200ml", quantity: 1 },
-      { productId: "huggies-baby-wipes-56-wipes", quantity: 1 },
+      { productId: "cussons-baby-powder-200g", quantity: 1 },
       { productId: "cerelac-wheat-milk-400g", quantity: 1 },
     ],
   },
@@ -317,22 +391,24 @@ const bundles = [
     name: "Staff Welfare",
     accent: "Welfare",
     tier: "NGN 50k",
-    summary: "A practical hamper base for appreciation and team welfare.",
+    summary: "A varied appreciation pack with refreshments and personal-care essentials.",
     icon: "heart",
     items: [
       { productId: "maltina-can-33cl-x-24", quantity: 1 },
       { productId: "five-alive-pulpy-orange-1l-x-12", quantity: 1 },
       { productId: "milo-food-drink-500g", quantity: 1 },
-      { productId: "bournvita-food-drink-500g", quantity: 1 },
+      { productId: "lipton-yellow-label-tea-bags-100-bags", quantity: 1 },
       { productId: "nivea-rich-nourishing-body-lotion-400ml", quantity: 1 },
       { productId: "dettol-original-antibacterial-soap-110g-x-6", quantity: 1 },
+      { productId: "nice-facial-tissue-1-box", quantity: 1 },
+      { productId: "medisoft-hand-sanitizer-500ml", quantity: 1 },
     ],
   },
   {
     id: "office-stationery-starter",
     name: "Office Stationery Starter",
     accent: "Stationery",
-    tier: "NGN 50k",
+    tier: "NGN 65k",
     summary: "Core desk supplies for a small team or front office.",
     icon: "briefcase",
     items: [
@@ -363,21 +439,19 @@ const bundles = [
   },
   {
     id: "fancy-folder-pack",
-    name: "Fancy Folder Pack",
+    name: "Filing & Records Pack",
     accent: "Folders",
-    tier: "NGN 50k",
-    summary: "Presentation-ready folders for proposals, records, and meetings.",
+    tier: "NGN 60k",
+    summary: "Distinct filing formats for proposals, records, transport, and archiving.",
     icon: "folder",
     items: [
       { productId: "rexel-anti-slip-folder-a4-clear-x25-a4-x-25", quantity: 1 },
       { productId: "rexel-joy-five-part-file-1-piece", quantity: 1 },
       { productId: "rexel-zipper-pocket-a4-x5-a4-x-5", quantity: 1 },
-      { productId: "rexel-display-book-choices-a4-40-pockets-green-a4-40-pockets", quantity: 1 },
-      { productId: "rexel-display-book-choices-a4-40-pockets-black-a4-40-pockets", quantity: 1 },
+      { productId: "rexel-display-book-choices-a4-40-pockets-green-a4-40-pockets", quantity: 2 },
       { productId: "rexel-ice-expanding-file-a4-13-pockets-assorted-a4-13-pockets", quantity: 1 },
-      { productId: "rexel-folder-advance-snap-in-2-pocket-navy-blue-2-pockets", quantity: 2 },
-      { productId: "rexel-folder-advance-stayput-purple-1-piece", quantity: 2 },
-      { productId: "rexel-folder-advance-4-pocket-custom-red-4-pockets", quantity: 2 },
+      { productId: "rexel-active-carry-folder-a4-a4", quantity: 4 },
+      { productId: "envelope-a4-white-a4", quantity: 10 },
     ],
   },
   {
@@ -385,33 +459,32 @@ const bundles = [
     name: "Office Pantry Core",
     accent: "Office pantry",
     tier: "NGN 75k",
-    summary: "A balanced office pantry restock for drinks, tea, and quick breaks.",
+    summary: "A balanced office pantry restock for hot drinks, juice, and hydration.",
     icon: "coffee",
     items: [
       { productId: "eva-table-water-75cl-x-12", quantity: 4 },
       { productId: "nescafe-classic-coffee-tin-50g", quantity: 2 },
       { productId: "milo-food-drink-500g", quantity: 2 },
-      { productId: "bournvita-food-drink-500g", quantity: 2 },
       { productId: "chivita-active-juice-1l-x-12", quantity: 1 },
       { productId: "golden-penny-white-granulated-sugar-1-kg-1kg", quantity: 2 },
       { productId: "peak-filled-milk-powder-400g", quantity: 1 },
+      { productId: "tetley-tea-bags-100-bags", quantity: 1 },
     ],
   },
   {
     id: "chi-juice-mix",
-    name: "Chi Juice Mix",
+    name: "Family Refreshment Mix",
     accent: "Drinks",
-    tier: "NGN 50k",
-    summary: "A Chivita-heavy drink mix for guests, family, and meetings.",
+    tier: "NGN 60k",
+    summary: "A varied family drinks pack with one option for each refreshment need.",
     icon: "cup",
     items: [
       { productId: "chivita-active-juice-1l-x-12", quantity: 1 },
-      { productId: "chivita-active-citrus-mixed-fruit-juice-100-cl-100cl", quantity: 3 },
-      { productId: "chivita-active-vegetable-fruit-nectar-carrot-orange-100-cl-100cl", quantity: 3 },
-      { productId: "chivita-orange-juice-100-cl-100cl", quantity: 3 },
-      { productId: "chivita-apple-juice-100-cl-100cl", quantity: 3 },
-      { productId: "chivita-pineapple-juice-100-cl-100cl", quantity: 3 },
-      { productId: "chivita-red-grape-juice-100-cl-100cl", quantity: 3 },
+      { productId: "eva-table-water-75cl-x-12", quantity: 2 },
+      { productId: "coca-cola-pet-50cl-x-12", quantity: 1 },
+      { productId: "maltina-can-33cl-x-24", quantity: 1 },
+      { productId: "capri-sun-orange-200ml-x-10", quantity: 1 },
+      { productId: "hollandia-yoghurt-plain-sweetened-1l-x-10", quantity: 1 },
     ],
   },
   {
@@ -419,15 +492,12 @@ const bundles = [
     name: "Wine Host Pack",
     accent: "Wine",
     tier: "NGN 50k",
-    summary: "Popular red and white wines for hosting and casual gifting.",
+    summary: "A concise red, white, and rose selection for hosting and gifting.",
     icon: "wine",
     items: [
-      { productId: "four-cousins-natural-sweet-red-wine-75-cl-75cl", quantity: 1 },
-      { productId: "carlo-rossi-sweet-red-wine-75-cl-75cl", quantity: 1 },
-      { productId: "4th-street-sweet-red-wine-75-cl-75cl", quantity: 2 },
-      { productId: "four-cousins-dry-white-wine-75-cl-75cl", quantity: 1 },
-      { productId: "4th-street-sweet-white-wine-75-cl-75cl", quantity: 2 },
-      { productId: "dominio-del-rey-white-wine-75-cl-75cl", quantity: 1 },
+      { productId: "four-cousins-natural-sweet-red-wine-75-cl-75cl", quantity: 2 },
+      { productId: "4th-street-sweet-white-wine-75-cl-75cl", quantity: 3 },
+      { productId: "carlo-rossi-wine-peach-flavour-75-cl-75cl", quantity: 2 },
     ],
   },
   {
@@ -435,33 +505,34 @@ const bundles = [
     name: "Red & White Wine Mix",
     accent: "Wine",
     tier: "NGN 75k",
-    summary: "A broader red and white wine selection for events and stocked bars.",
+    summary: "One selected red and one selected white wine in event-ready quantities.",
     icon: "wine",
     items: [
-      { productId: "four-cousins-natural-sweet-red-wine-75-cl-75cl", quantity: 2 },
-      { productId: "carlo-rossi-sweet-red-wine-75-cl-75cl", quantity: 2 },
-      { productId: "baron-romero-spanish-red-wine-75-cl-75cl", quantity: 2 },
-      { productId: "toma-bodegas-lozano-fruity-red-wine-75-cl-75cl", quantity: 2 },
-      { productId: "four-cousins-dry-white-wine-75-cl-75cl", quantity: 2 },
-      { productId: "4th-street-sweet-white-wine-75-cl-75cl", quantity: 2 },
-      { productId: "castillo-de-espana-white-wine-75-cl-75cl", quantity: 1 },
+      { productId: "carlo-rossi-sweet-red-wine-75-cl-75cl", quantity: 4 },
+      { productId: "frontera-sauvignon-blanc-75-cl-75cl", quantity: 4 },
     ],
   },
   {
     id: "swallow-soup-base",
-    name: "Swallow & Soup Base",
+    name: "Soup & Swallow Family Pack",
     accent: "Foodstuff",
     tier: "NGN 150k",
-    summary: "A larger garri, fufu, poundo, and soup base restock for Nigerian kitchens.",
+    summary: "A complete swallow and soup restock with fresh vegetables and proteins.",
     icon: "basket",
     items: [
-      { productId: "golden-penny-garri-5-kg-5kg", quantity: 5 },
-      { productId: "endy-s-fufu-flour-2-kg-2kg", quantity: 4 },
-      { productId: "ayoola-foods-cassava-fufu-flour-2-kg-2kg", quantity: 8 },
-      { productId: "ayoola-foods-poundo-yam-flour-1-8-kg-1-8kg", quantity: 5 },
-      { productId: "golden-penny-semovita-1kg", quantity: 8 },
-      { productId: "maggi-chicken-cubes-100-cubes", quantity: 3 },
-      { productId: "de-rica-tomato-paste-210g", quantity: 10 },
+      { productId: "ayoola-foods-poundo-yam-flour-1-8-kg-1-8kg", quantity: 4 },
+      { productId: "laziz-palm-oil-4l", quantity: 2 },
+      { productId: "beef-1-kg", quantity: 4 },
+      { productId: "catfish-1-kg", quantity: 2 },
+      { productId: "fresh-tomatoes-1-kg", quantity: 3 },
+      { productId: "red-onions-1-kg", quantity: 2 },
+      { productId: "scotch-bonnet-pepper-1-kg", quantity: 1 },
+      { productId: "red-bell-pepper-tatashe-1-kg", quantity: 1 },
+      { productId: "ugu-pumpkin-leaves-1-kg", quantity: 2 },
+      { productId: "okro-1-kg", quantity: 2 },
+      { productId: "yam-1-kg", quantity: 2 },
+      { productId: "maggi-chicken-cubes-100-cubes", quantity: 2 },
+      { productId: "dangote-salt-1kg", quantity: 2 },
     ],
   },
   {
@@ -469,49 +540,48 @@ const bundles = [
     name: "Breakfast & Spread",
     accent: "Breakfast",
     tier: "NGN 30k",
-    summary: "Breakfast basics with cereals, beverages, margarine, and mayonnaise.",
+    summary: "A varied breakfast restock with one product for each meal role.",
     icon: "coffee",
     items: [
-      { productId: "golden-morn-cereal-900g", quantity: 1 },
       { productId: "quaker-oats-tin-500g", quantity: 1 },
       { productId: "milo-food-drink-500g", quantity: 1 },
-      { productId: "bournvita-food-drink-500g", quantity: 1 },
       { productId: "blue-band-margarine-250g", quantity: 2 },
-      { productId: "bama-mayonnaise-385-ml-385ml", quantity: 1 },
       { productId: "three-crowns-evaporated-milk-160-g-160g", quantity: 3 },
+      { productId: "family-custard-milk-3-in-1-sachet-500-g-500g", quantity: 1 },
+      { productId: "golden-penny-white-granulated-sugar-1-kg-1kg", quantity: 1 },
+      { productId: "lipton-yellow-label-tea-bags-100-bags", quantity: 1 },
+      { productId: "golden-penny-multi-purpose-wheat-baking-flour-1-kg-1kg", quantity: 1 },
+      { productId: "heinz-baked-beans-415-g-415g", quantity: 1 },
     ],
   },
   {
     id: "family-garri-fufu-pack",
-    name: "Family Garri & Fufu Pack",
+    name: "Nigerian Staples Variety",
     accent: "Foodstuff",
     tier: "NGN 50k",
-    summary: "Packaged garri, fufu, and poundo options for a fuller family restock.",
+    summary: "Distinct Nigerian staples without repeating competing brands of the same product.",
     icon: "basket",
     items: [
-      { productId: "nini-foods-crispy-ijebu-garri-2-kg-2kg", quantity: 1 },
-      { productId: "vine-dresser-foods-garri-ijebu-2-kg-2kg", quantity: 1 },
-      { productId: "nini-foods-yellow-garri-3-kg-3kg", quantity: 1 },
-      { productId: "golden-penny-garri-5-kg-5kg", quantity: 1 },
-      { productId: "sofi-instant-fufu-cassava-flour-1-kg-1kg", quantity: 3 },
-      { productId: "niji-foods-odourless-fufu-flour-1-kg-1kg", quantity: 3 },
-      { productId: "ayoola-foods-poundo-yam-flour-1-8-kg-1-8kg", quantity: 1 },
+      { productId: "golden-penny-garri-5-kg-5kg", quantity: 2 },
+      { productId: "ayoola-foods-cassava-fufu-flour-2-kg-2kg", quantity: 3 },
+      { productId: "ayoola-foods-poundo-yam-flour-1-8-kg-1-8kg", quantity: 2 },
+      { productId: "golden-penny-semovita-1kg", quantity: 4 },
+      { productId: "nini-pure-yam-flour-elubo-isu-2-kg-2kg", quantity: 1 },
     ],
   },
   {
     id: "fresh-space-diffuser-pack",
-    name: "Fresh Space Diffuser Pack",
+    name: "Fresh Space Care Pack",
     accent: "Facility",
     tier: "NGN 50k",
-    summary: "Diffusers and fresheners for offices, lounges, and reception areas.",
+    summary: "A varied odor-control and surface-care pack for shared spaces.",
     icon: "spray",
     items: [
-      { productId: "top-breeze-diffuser-160-ml-160ml", quantity: 2 },
-      { productId: "air-wick-scented-reed-diffuser-wood-1-piece", quantity: 1 },
-      { productId: "air-wick-reed-diffuser-mistletoe-pine-multi-layered-fragrance-25-ml-25ml", quantity: 2 },
-      { productId: "air-wick-reed-diffuser-life-scents-summer-delights-30-ml-30ml", quantity: 2 },
-      { productId: "air-wick-freshmatic-diffuser-refill-assorted-250-ml-250ml", quantity: 1 },
-      { productId: "glade-air-freshener-spray-300ml", quantity: 2 },
+      { productId: "top-breeze-diffuser-160-ml-160ml", quantity: 4 },
+      { productId: "air-wick-air-freshener-spray-300ml", quantity: 4 },
+      { productId: "glade-solid-air-freshener-clean-linen-170-g-170g", quantity: 4 },
+      { productId: "dettol-all-in-one-disinfectant-spray-assorted-400-ml-400ml", quantity: 2 },
+      { productId: "vileda-cleaning-cloth-3-pieces", quantity: 2 },
     ],
   },
   {
@@ -519,14 +589,13 @@ const bundles = [
     name: "Drinks Hamper",
     accent: "Hamper",
     tier: "NGN 150k",
-    summary: "A balanced drinks hamper for meetings, visitors, and home hosting.",
+    summary: "A balanced drinks hamper with one option for each refreshment need.",
     icon: "gift",
     items: [
-      { productId: "chivita-active-juice-1l-x-12", quantity: 2 },
-      { productId: "five-alive-pulpy-orange-1l-x-12", quantity: 2 },
-      { productId: "maltina-can-33cl-x-24", quantity: 2 },
+      { productId: "chivita-active-juice-1l-x-12", quantity: 3 },
+      { productId: "maltina-can-33cl-x-24", quantity: 3 },
       { productId: "red-bull-energy-drink-250ml-x-24", quantity: 1 },
-      { productId: "coca-cola-pet-50cl-x-12", quantity: 2 },
+      { productId: "coca-cola-pet-50cl-x-12", quantity: 3 },
       { productId: "nescafe-gold-blend-coffee-golden-roast-100g", quantity: 1 },
       { productId: "tetley-tea-bags-100-bags", quantity: 1 },
     ],
@@ -554,37 +623,41 @@ const bundles = [
     name: "Toiletries Hamper",
     accent: "Hamper",
     tier: "NGN 155k",
-    summary: "A bathroom essentials hamper for homes, guest rooms, and shared spaces.",
+    summary: "A broad bathroom and personal-care hamper with no substitute-brand padding.",
     icon: "gift",
     items: [
-      { productId: "softwave-toilet-tissue-48-rolls", quantity: 2 },
-      { productId: "andrex-toilet-tissue-classic-clean-6-rolls", quantity: 2 },
-      { productId: "dove-beauty-bar-100g-x-4", quantity: 4 },
-      { productId: "listerine-mouthwash-cool-mint-500ml", quantity: 3 },
-      { productId: "colgate-maximum-cavity-protection-140g", quantity: 6 },
-      { productId: "always-cotton-soft-sanitary-pads-16-pads", quantity: 4 },
-      { productId: "irish-spring-body-wash-591ml", quantity: 2 },
+      { productId: "softwave-toilet-tissue-48-rolls", quantity: 5 },
       { productId: "dove-deeply-nourishing-body-wash-500ml", quantity: 2 },
+      { productId: "colgate-maximum-cavity-protection-140g", quantity: 4 },
+      { productId: "oral-b-toothbrush-medium-1-piece", quantity: 4 },
+      { productId: "listerine-mouthwash-cool-mint-500ml", quantity: 2 },
+      { productId: "always-cotton-soft-sanitary-pads-16-pads", quantity: 5 },
       { productId: "cotton-wool-roll-500g", quantity: 2 },
+      { productId: "dettol-liquid-hand-wash-200ml", quantity: 2 },
+      { productId: "medisoft-hand-sanitizer-500ml", quantity: 2 },
+      { productId: "dove-men-care-deodorant-spray-250ml", quantity: 2 },
+      { productId: "nice-facial-tissue-1-box", quantity: 4 },
+      { productId: "nivea-rich-nourishing-body-lotion-400ml", quantity: 2 },
     ],
   },
   {
     id: "baby-hamper",
     name: "Baby Hamper",
     accent: "Hamper",
-    tier: "NGN 215k",
-    summary: "A fuller baby-care hamper with feeding, diapers, wipes, and bath items.",
+    tier: "NGN 205k",
+    summary: "A fuller diaper, feeding, bath, and skincare hamper without competing brands.",
     icon: "gift",
     items: [
-      { productId: "cow-gate-comfort-baby-milk-formula-800g", quantity: 1 },
-      { productId: "sma-gold-3-toddler-milk-900g", quantity: 1 },
-      { productId: "pampers-baby-dry-diapers-medium-64-pieces", quantity: 2 },
-      { productId: "molfix-diapers-medium-64-pieces", quantity: 2 },
+      { productId: "pampers-baby-dry-diapers-medium-64-pieces", quantity: 6 },
+      { productId: "molfix-baby-wipes-80-wipes", quantity: 4 },
       { productId: "johnson-s-baby-bath-500ml", quantity: 2 },
       { productId: "johnson-s-baby-lotion-300ml", quantity: 2 },
       { productId: "johnson-s-baby-oil-200ml", quantity: 2 },
-      { productId: "molfix-baby-wipes-80-wipes", quantity: 4 },
+      { productId: "cussons-baby-powder-200g", quantity: 2 },
       { productId: "cerelac-wheat-milk-400g", quantity: 2 },
+      { productId: "tommee-tippee-feeding-bottle-260ml", quantity: 2 },
+      { productId: "baby-food-bowl-set-1-set", quantity: 2 },
+      { productId: "farleys-rusks-reduced-sugar-baby-food-snack-300g", quantity: 1 },
     ],
   },
   {
@@ -592,19 +665,18 @@ const bundles = [
     name: "Skincare Hamper",
     accent: "Hamper",
     tier: "NGN 165k",
-    summary: "A skincare hamper with facial care, body care, oils, and sun protection.",
+    summary: "A complete routine with one selected product for each skincare step.",
     icon: "gift",
     items: [
-      { productId: "la-roche-posay-anthelios-sunscreen-spf50-50ml", quantity: 1 },
-      { productId: "neutrogena-hydro-boost-water-gel-50ml", quantity: 1 },
-      { productId: "cerave-daily-moisturizing-lotion-355ml", quantity: 1 },
-      { productId: "the-ordinary-niacinamide-10-zinc-1-30ml", quantity: 1 },
-      { productId: "the-ordinary-hyaluronic-acid-2-b5-30ml", quantity: 1 },
-      { productId: "bio-oil-skincare-oil-125ml", quantity: 1 },
-      { productId: "palmer-s-skin-therapy-oil-150ml", quantity: 1 },
-      { productId: "jergens-ultra-healing-lotion-621ml", quantity: 1 },
-      { productId: "nivea-sun-uv-face-shine-control-spf50-50ml", quantity: 1 },
-      { productId: "garnier-micellar-cleansing-water-400ml", quantity: 2 },
+      { productId: "garnier-micellar-cleansing-water-400ml", quantity: 1 },
+      { productId: "neutrogena-hydro-boost-water-gel-50ml", quantity: 2 },
+      { productId: "the-ordinary-niacinamide-10-zinc-1-30ml", quantity: 2 },
+      { productId: "bio-oil-skincare-oil-125ml", quantity: 2 },
+      { productId: "dove-nourishing-body-care-lotion-400ml", quantity: 2 },
+      { productId: "nivea-sun-uv-face-shine-control-spf50-50ml", quantity: 2 },
+      { productId: "st-ives-fresh-skin-apricot-scrub-170g", quantity: 2 },
+      { productId: "nivea-original-lip-balm-4-8g", quantity: 3 },
+      { productId: "dove-original-antiperspirant-roll-on-50ml", quantity: 2 },
     ],
   },
   {
@@ -612,17 +684,14 @@ const bundles = [
     name: "Fragrance Hamper",
     accent: "Hamper",
     tier: "NGN 205k",
-    summary: "A fragrance hamper with perfumes, body mists, and everyday scents.",
+    summary: "A focused fragrance wardrobe with one choice for each scent format.",
     icon: "gift",
     items: [
+      { productId: "lattafa-yara-eau-de-parfum-100ml", quantity: 3 },
       { productId: "armaf-club-de-nuit-intense-man-105ml", quantity: 1 },
-      { productId: "lattafa-yara-eau-de-parfum-100ml", quantity: 1 },
-      { productId: "lattafa-asad-eau-de-parfum-100ml", quantity: 1 },
-      { productId: "oud-24-hours-eau-de-parfum-100ml", quantity: 1 },
-      { productId: "victoria-s-secret-body-mist-pure-seduction-250ml", quantity: 1 },
-      { productId: "bath-body-works-body-mist-japanese-cherry-blossom-236ml", quantity: 1 },
-      { productId: "smart-collection-no-352-eau-de-parfum-100ml", quantity: 1 },
-      { productId: "jovan-musk-cologne-spray-88ml", quantity: 1 },
+      { productId: "victoria-s-secret-body-mist-pure-seduction-250ml", quantity: 2 },
+      { productId: "axe-black-body-spray-150ml", quantity: 2 },
+      { productId: "baccarat-rouge-540-inspired-perfume-oil-10ml", quantity: 1 },
     ],
   },
   {
@@ -630,11 +699,10 @@ const bundles = [
     name: "Stationery Hamper",
     accent: "Hamper",
     tier: "NGN 205k",
-    summary: "A corporate stationery hamper for procurement, admin desks, and records.",
+    summary: "A broad corporate stationery restock built around distinct office tasks.",
     icon: "gift",
     items: [
       { productId: "double-a-business-a4-printing-paper-75-gsm-x5-75gsm-x-5", quantity: 2 },
-      { productId: "suzano-report-a4-printing-paper-75-gsm-x5-75gsm-x-5", quantity: 1 },
       { productId: "thermal-printer-paper-rolls-80-x-80-mm-x50-80-x-80mm-x-50", quantity: 1 },
       { productId: "eezee-biro-blue-x25-25-pieces", quantity: 3 },
       { productId: "maped-whiteboard-marker-medium-x4-4-pieces", quantity: 2 },
@@ -642,20 +710,119 @@ const bundles = [
       { productId: "rexel-active-carry-folder-a4-a4", quantity: 10 },
       { productId: "rexel-r30-compact-stapler-grey-1-piece", quantity: 3 },
       { productId: "m-g-12-digits-desktop-calculator-two-way-power-mgc-02-12-digits", quantity: 3 },
-    ],
-  },
-  {
-    id: "pet-hamper",
-    name: "Pet Hamper",
-    accent: "Hamper",
-    tier: "NGN 72k",
-    summary: "A simple pet restock hamper for homes with dogs.",
-    icon: "gift",
-    items: [
-      { productId: "bingo-dog-food-beef-3kg", quantity: 6 },
+      { productId: "helix-oxford-hb-pencil-x12-12-pieces", quantity: 2 },
+      { productId: "nexus-jotters-1-piece", quantity: 10 },
+      { productId: "snopake-pinpoint-correction-pen-1-piece", quantity: 4 },
+      { productId: "global-notes-15-x-50-mm-page-marker-brilliant-mix-100-sheets-x-5-100-sheets-x-5", quantity: 3 },
+      { productId: "maped-scissors-essentials-symmetrical-13-cm-13cm", quantity: 2 },
+      { productId: "sealing-tape-2-inch-transparent-130-yards-2-inch", quantity: 3 },
+      { productId: "maped-paper-clip-dispenser-paper-clips-x100-black-100-clips", quantity: 3 },
+      { productId: "petty-cash-voucher-1-pad", quantity: 2 },
     ],
   },
 ];
+
+const bundleRoleOverrides = {
+  "fresh-tomatoes-1-kg": "fresh-tomatoes",
+  "red-onions-1-kg": "onions",
+  "scotch-bonnet-pepper-1-kg": "scotch-bonnet",
+  "red-bell-pepper-tatashe-1-kg": "tatashe",
+  "cayenne-pepper-shombo-1-kg": "shombo",
+  "fresh-ginger-1-kg": "ginger",
+  "fresh-garlic-1-kg": "garlic",
+  "ugu-pumpkin-leaves-1-kg": "leafy-vegetable",
+  "okro-1-kg": "okro",
+  "apples-1-kg": "apples",
+  "bananas-1-kg": "bananas",
+  "oranges-1-kg": "oranges",
+  "watermelon-1-kg": "watermelon",
+  "pineapple-1-kg": "pineapple",
+  "packaged-chicken-1-kg": "chicken",
+  "beef-1-kg": "beef",
+  "catfish-1-kg": "fish",
+  "yam-1-kg": "yam",
+  "ripe-plantain-1-kg": "plantain",
+  "closeup-toothpaste-deep-action-140g": "toothpaste",
+  "colgate-maximum-cavity-protection-140g": "toothpaste",
+  "oral-b-toothbrush-medium-1-piece": "toothbrush",
+  "listerine-mouthwash-cool-mint-500ml": "mouthwash",
+  "johnson-s-baby-bath-500ml": "baby-bath",
+  "johnson-s-baby-lotion-300ml": "baby-lotion",
+  "johnson-s-baby-oil-200ml": "baby-oil",
+  "cussons-baby-powder-200g": "baby-powder",
+  "tommee-tippee-feeding-bottle-260ml": "feeding-bottle",
+  "baby-food-bowl-set-1-set": "feeding-bowl",
+  "rexel-anti-slip-folder-a4-clear-x25-a4-x-25": "document-sleeves",
+  "rexel-joy-five-part-file-1-piece": "sectioned-file",
+  "rexel-zipper-pocket-a4-x5-a4-x-5": "zipper-pockets",
+  "rexel-display-book-choices-a4-40-pockets-green-a4-40-pockets": "display-book",
+  "rexel-ice-expanding-file-a4-13-pockets-assorted-a4-13-pockets": "expanding-file",
+  "rexel-active-carry-folder-a4-a4": "carry-folder",
+  "envelope-a4-white-a4": "envelopes",
+  "double-a-business-a4-printing-paper-75-gsm-x5-75gsm-x-5": "a4-paper",
+  "thermal-printer-paper-rolls-80-x-80-mm-x50-80-x-80mm-x-50": "thermal-paper",
+};
+
+const normalizeBundleRole = (value) =>
+  String(value || "product")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-|-$/g, "");
+
+bundles.forEach((bundle) => {
+  bundle.items = bundle.items.map((item) => {
+    const product = productById.get(item.productId);
+    return {
+      ...item,
+      role:
+        bundleRoleOverrides[item.productId] ||
+        normalizeBundleRole(product?.subcategory || product?.name || item.productId),
+    };
+  });
+});
+
+const validateBundleDefinitions = () => {
+  const issues = [];
+
+  bundles.forEach((bundle) => {
+    const productIds = new Set();
+    const roles = new Set();
+    let total = 0;
+
+    bundle.items.forEach((item) => {
+      const product = productById.get(item.productId);
+      if (!product) issues.push(`${bundle.id}: missing product ${item.productId}`);
+      if (!Number.isInteger(item.quantity) || item.quantity < 1) {
+        issues.push(`${bundle.id}: invalid quantity for ${item.productId}`);
+      }
+      if (productIds.has(item.productId)) {
+        issues.push(`${bundle.id}: duplicate product ${item.productId}`);
+      }
+      if (roles.has(item.role)) issues.push(`${bundle.id}: duplicate role ${item.role}`);
+      productIds.add(item.productId);
+      roles.add(item.role);
+      if (product) total += product.price * item.quantity;
+    });
+
+    const tierMatch = bundle.tier.match(/NGN\s+(\d+)k/i);
+    if (tierMatch) {
+      const target = Number(tierMatch[1]) * 1000;
+      const variance = Math.abs(total - target) / target;
+      if (variance > 0.05) {
+        issues.push(`${bundle.id}: ${total} is outside 5% of ${target}`);
+      }
+    }
+  });
+
+  return issues;
+};
+
+const bundleValidationIssues = validateBundleDefinitions();
+if (bundleValidationIssues.length) {
+  console.error("Invalid bundle definitions", bundleValidationIssues);
+}
+
 
 const sanitizeSavedCart = (cart) => {
   if (!Array.isArray(cart)) return [];
@@ -767,6 +934,7 @@ const state = {
   recurrence: savedBasketState.recurrence,
   orderType: savedBasketState.orderType,
   selectedBundleId: null,
+  selectedBundleProductIds: [],
 };
 
 const persistBasketState = () => {
@@ -1072,6 +1240,27 @@ const getBundleProducts = (bundle) =>
     })
     .filter(Boolean);
 
+const getSelectedBundleItems = (bundle) => {
+  const selectedProductIds = new Set(state.selectedBundleProductIds);
+  return bundle.items.filter((item) => selectedProductIds.has(item.productId));
+};
+
+const addBundleSelectionToCart = (bundle, { trackFullBundle = true } = {}) => {
+  const selectedItems = getSelectedBundleItems(bundle);
+  if (!selectedItems.length) return;
+
+  selectedItems.forEach((bundleItem) => {
+    const currentQuantity = getCartItem(bundleItem.productId)?.quantity || 0;
+    setQuantity(bundleItem.productId, currentQuantity + bundleItem.quantity);
+  });
+
+  if (trackFullBundle && selectedItems.length === bundle.items.length) {
+    state.bundleCounts[bundle.id] = (state.bundleCounts[bundle.id] || 0) + 1;
+  }
+  persistBasketState();
+  renderBundles();
+};
+
 const getBundlePreview = (bundle) =>
   getBundleProducts(bundle)
     .map((product) => `${product.name} x${product.quantity}`)
@@ -1110,33 +1299,70 @@ const renderBundleDetails = (bundle) => {
     return;
   }
 
-  const bundleProducts = getBundleProducts(bundle);
-  const total = getBundleTotal(bundle);
-  const itemCount = getBundleItemCount(bundle);
+  const selectedItems = getSelectedBundleItems(bundle);
+  const selectedProductIds = new Set(selectedItems.map((item) => item.productId));
+  const bundleProducts = getBundleProducts(bundle).filter((product) =>
+    selectedProductIds.has(product.id)
+  );
+  const total = bundleProducts.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0
+  );
+  const itemCount = bundleProducts.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
   const isInBasket = isBundleAdded(bundle);
+  const isCustomized = selectedItems.length !== bundle.items.length;
+  const bundleAction = !selectedItems.length
+    ? "empty"
+    : isInBasket && isCustomized
+      ? "update"
+      : isInBasket
+        ? "remove"
+        : "add";
 
   bundleDetailMeta.textContent = `${bundle.accent} - ${bundle.tier}`;
   bundleDetailTitle.textContent = bundle.name;
-  addSelectedBundleButton.textContent = isInBasket
-    ? `Remove ${bundle.name}`
-    : `Add ${bundle.name}`;
-  addSelectedBundleButton.dataset.bundleAction = isInBasket ? "remove" : "add";
-  addSelectedBundleButton.classList.toggle("bundle-remove", isInBasket);
+  addSelectedBundleButton.textContent =
+    bundleAction === "empty"
+      ? "Select at least one item"
+      : bundleAction === "update"
+        ? "Update bundle"
+        : bundleAction === "remove"
+          ? `Remove ${bundle.name}`
+          : isCustomized
+            ? "Add selected items"
+            : `Add ${bundle.name}`;
+  addSelectedBundleButton.dataset.bundleAction = bundleAction;
+  addSelectedBundleButton.disabled = bundleAction === "empty";
+  addSelectedBundleButton.classList.toggle("bundle-remove", bundleAction === "remove");
   addSelectedBundleButton.setAttribute(
     "aria-label",
-    isInBasket ? `Remove ${bundle.name} bundle` : `Add ${bundle.name} bundle`
+    bundleAction === "empty"
+      ? "Select at least one bundle item"
+      : `${addSelectedBundleButton.textContent}: ${bundle.name}`
   );
 
   bundleDetailBody.innerHTML = `
     <p class="bundle-detail-summary">${bundle.summary}</p>
     <div class="bundle-detail-stat">
-      <span>${itemCount} item${itemCount === 1 ? "" : "s"}</span>
+      <div>
+        <span>${itemCount} item${itemCount === 1 ? "" : "s"}</span>
+        ${
+          isCustomized
+            ? '<button class="bundle-reset-items" type="button" data-reset-bundle-items>Restore all</button>'
+            : ""
+        }
+      </div>
       <strong>${formatNaira(total)}</strong>
     </div>
     <div class="bundle-detail-items">
-      ${bundleProducts
-        .map(
-          (product) => `
+      ${
+        bundleProducts.length
+          ? bundleProducts
+              .map(
+                (product) => `
             <article class="bundle-detail-item">
               <img src="${product.image}" alt="${product.name}" loading="lazy" />
               <div>
@@ -1144,10 +1370,16 @@ const renderBundleDetails = (bundle) => {
                 <span>${product.unit} - Qty ${product.quantity}</span>
               </div>
               <strong>${formatNaira(product.price * product.quantity)}</strong>
+              <button class="bundle-item-remove" type="button"
+                data-remove-bundle-product="${product.id}"
+                aria-label="Remove ${product.name} from bundle"
+                title="Remove item">&times;</button>
             </article>
           `
-        )
-        .join("")}
+              )
+              .join("")
+          : '<p class="bundle-selection-empty">No items selected. Restore the bundle to continue.</p>'
+      }
     </div>
   `;
 };
@@ -1157,6 +1389,7 @@ const openBundleDetails = (bundleId) => {
   if (!bundle || !bundleModal) return;
 
   state.selectedBundleId = bundle.id;
+  state.selectedBundleProductIds = bundle.items.map((item) => item.productId);
   renderBundleDetails(bundle);
   bundleModal.classList.remove("hidden");
   document.body.classList.add("modal-open");
@@ -1168,18 +1401,19 @@ const closeBundleDetails = () => {
   bundleModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
   state.selectedBundleId = null;
+  state.selectedBundleProductIds = [];
 };
 
 const categoryOrder = [
   "All",
   "Foodstuff & Pantry",
+  "Fresh Market",
   "Toiletries",
   "Cleaning & Home Care",
   "Baby & Kids",
   "Drinks",
   "Skincare & Personal Care",
   "Stationery",
-  "Pets",
 ];
 
 const liveCategories = [...new Set(products.map((product) => product.category))];
@@ -1662,13 +1896,9 @@ const renderRecurrence = () => {
   recurrenceContainer.innerHTML = recurrenceOptions
     .map(
       (option) => `
-        <button class="recurrence-option ${option.value === state.recurrence ? "active" : ""}"
-          type="button"
-          data-recurrence="${option.value}"
-          aria-pressed="${option.value === state.recurrence}">
-          <strong>${option.title}</strong>
-          <span>${option.text}</span>
-        </button>
+        <option value="${option.value}" ${option.value === state.recurrence ? "selected" : ""}>
+          ${option.title}
+        </option>
       `
     )
     .join("");
@@ -1680,13 +1910,9 @@ const renderOrderType = () => {
   orderTypeContainer.innerHTML = orderTypeOptions
     .map(
       (option) => `
-        <button class="order-type-option ${option.value === state.orderType ? "active" : ""}"
-          type="button"
-          data-order-type="${option.value}"
-          aria-pressed="${option.value === state.orderType}">
-          <strong>${option.title}</strong>
-          <span>${option.text}</span>
-        </button>
+        <option value="${option.value}" ${option.value === state.orderType ? "selected" : ""}>
+          ${option.title}
+        </option>
       `
     )
     .join("");
@@ -2076,20 +2302,16 @@ if (bundleGrid) {
 }
 
 if (recurrenceContainer) {
-  recurrenceContainer.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-recurrence]");
-    if (!button) return;
-    state.recurrence = button.dataset.recurrence;
+  recurrenceContainer.addEventListener("change", (event) => {
+    state.recurrence = event.target.value;
     persistBasketState();
     render();
   });
 }
 
 if (orderTypeContainer) {
-  orderTypeContainer.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-order-type]");
-    if (!button) return;
-    state.orderType = button.dataset.orderType;
+  orderTypeContainer.addEventListener("change", (event) => {
+    state.orderType = event.target.value;
     persistBasketState();
     clearValidation();
     render();
@@ -2102,12 +2324,38 @@ closeBundleButton?.addEventListener("click", closeBundleDetails);
 cancelBundleButton?.addEventListener("click", closeBundleDetails);
 addSelectedBundleButton?.addEventListener("click", () => {
   if (!state.selectedBundleId) return;
-  if (addSelectedBundleButton.dataset.bundleAction === "remove") {
-    removeBundleFromCart(state.selectedBundleId);
-  } else {
-    addBundleToCart(state.selectedBundleId);
+  const bundle = bundles.find((item) => item.id === state.selectedBundleId);
+  if (!bundle) return;
+
+  const action = addSelectedBundleButton.dataset.bundleAction;
+  if (action === "empty") return;
+  if (action === "remove") removeBundleFromCart(bundle.id);
+  if (action === "update") {
+    removeBundleFromCart(bundle.id);
+    addBundleSelectionToCart(bundle, { trackFullBundle: false });
   }
+  if (action === "add") addBundleSelectionToCart(bundle);
   closeBundleDetails();
+});
+
+bundleDetailBody?.addEventListener("click", (event) => {
+  if (!state.selectedBundleId) return;
+  const bundle = bundles.find((item) => item.id === state.selectedBundleId);
+  if (!bundle) return;
+
+  const removeButton = event.target.closest("[data-remove-bundle-product]");
+  if (removeButton) {
+    state.selectedBundleProductIds = state.selectedBundleProductIds.filter(
+      (productId) => productId !== removeButton.dataset.removeBundleProduct
+    );
+    renderBundleDetails(bundle);
+    return;
+  }
+
+  if (event.target.closest("[data-reset-bundle-items]")) {
+    state.selectedBundleProductIds = bundle.items.map((item) => item.productId);
+    renderBundleDetails(bundle);
+  }
 });
 
 reviewModal?.addEventListener("click", (event) => {

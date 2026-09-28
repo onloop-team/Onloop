@@ -2500,16 +2500,6 @@ window.RESTOQ_CATALOG_PRODUCTS = [
     "image": "images/catalog-products/avon-far-away-eau-de-parfum-50ml.jpg"
   },
   {
-    "id": "bingo-dog-food-beef-3kg",
-    "name": "Bingo Dog Food Beef",
-    "brand": "Bingo",
-    "category": "Dog Food",
-    "subcategory": "Dry Dog Food",
-    "unit": "3kg",
-    "price": 12000,
-    "image": "images/catalog-products/bingo-dog-food-beef-3kg.jpg"
-  },
-  {
     "id": "febreze-air-freshener-assorted-185-ml-185ml",
     "name": "Febreze Air Freshener Assorted 185 ml",
     "brand": "Febreze",
@@ -4088,5 +4078,275 @@ window.RESTOQ_CATALOG_PRODUCTS = [
     "unit": "340g",
     "price": 1430,
     "image": "images/catalog-products/green-giant-niblets-sweetcorn-340-g.webp"
+  },
+  {
+    "id": "fresh-tomatoes-1-kg",
+    "name": "Fresh Tomatoes",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1500,
+    "image": "images/catalog-products/fresh-tomatoes-1kg.png"
+  },
+  {
+    "id": "red-onions-1-kg",
+    "name": "Red Onions",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1600,
+    "image": "images/catalog-products/fresh-red-onions-1kg.jpg"
+  },
+  {
+    "id": "scotch-bonnet-pepper-1-kg",
+    "name": "Scotch Bonnet Pepper",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Peppers",
+    "unit": "1 kg",
+    "price": 6500,
+    "image": "images/catalog-products/scotch-bonnet-pepper-1kg.webp"
+  },
+  {
+    "id": "red-bell-pepper-tatashe-1-kg",
+    "name": "Red Bell Pepper (Tatashe)",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Peppers",
+    "unit": "1 kg",
+    "price": 6500,
+    "image": "images/catalog-products/red-bell-pepper-tatashe-1kg.jpg"
+  },
+  {
+    "id": "cayenne-pepper-shombo-1-kg",
+    "name": "Cayenne Pepper (Shombo)",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Peppers",
+    "unit": "1 kg",
+    "price": 5500,
+    "image": "images/catalog-products/cayenne-pepper-shombo-1kg.jpg"
+  },
+  {
+    "id": "fresh-ginger-1-kg",
+    "name": "Fresh Ginger",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 3500,
+    "image": "images/catalog-products/fresh-ginger-1kg.jpg"
+  },
+  {
+    "id": "fresh-garlic-1-kg",
+    "name": "Fresh Garlic",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 4500,
+    "image": "images/catalog-products/fresh-garlic-1kg.jpg"
+  },
+  {
+    "id": "carrots-1-kg",
+    "name": "Carrots",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1500,
+    "image": "images/catalog-products/carrots-1kg.jpg"
+  },
+  {
+    "id": "cabbage-1-kg",
+    "name": "Cabbage",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1200,
+    "image": "images/catalog-products/cabbage-1kg.jpg"
+  },
+  {
+    "id": "cucumber-1-kg",
+    "name": "Cucumber",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1500,
+    "image": "images/catalog-products/cucumber-1kg.jpg"
+  },
+  {
+    "id": "okro-1-kg",
+    "name": "Okro",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 1300,
+    "image": "images/catalog-products/okro-1kg.jpeg"
+  },
+  {
+    "id": "ugu-pumpkin-leaves-1-kg",
+    "name": "Ugu (Pumpkin Leaves)",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Vegetables",
+    "unit": "1 kg",
+    "price": 2000,
+    "image": "images/catalog-products/ugu-pumpkin-leaves-1kg.jpg"
+  },
+  {
+    "id": "apples-1-kg",
+    "name": "Apples",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fruits",
+    "unit": "1 kg",
+    "price": 4500,
+    "image": "images/catalog-products/apples-1kg.png"
+  },
+  {
+    "id": "bananas-1-kg",
+    "name": "Bananas",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fruits",
+    "unit": "1 kg",
+    "price": 1800,
+    "image": "images/catalog-products/bananas-1kg.webp"
+  },
+  {
+    "id": "oranges-1-kg",
+    "name": "Oranges",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fruits",
+    "unit": "1 kg",
+    "price": 1700,
+    "image": "images/catalog-products/oranges-1kg.png"
+  },
+  {
+    "id": "watermelon-1-kg",
+    "name": "Watermelon",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fruits",
+    "unit": "1 kg",
+    "price": 900,
+    "image": "images/catalog-products/watermelon-1kg.jpg"
+  },
+  {
+    "id": "pineapple-1-kg",
+    "name": "Pineapple",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fruits",
+    "unit": "1 kg",
+    "price": 1400,
+    "image": "images/catalog-products/pineapple-1kg.jpg"
+  },
+  {
+    "id": "yam-1-kg",
+    "name": "Yam",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Tubers",
+    "unit": "1 kg",
+    "price": 3000,
+    "image": "images/catalog-products/yam-1kg.jpg"
+  },
+  {
+    "id": "ripe-plantain-1-kg",
+    "name": "Ripe Plantain",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Tubers",
+    "unit": "1 kg",
+    "price": 2000,
+    "image": "images/catalog-products/ripe-plantain-1kg.webp"
+  },
+  {
+    "id": "irish-potatoes-1-kg",
+    "name": "Irish Potatoes",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Tubers",
+    "unit": "1 kg",
+    "price": 1800,
+    "image": "images/catalog-products/irish-potatoes-1kg.jpg"
+  },
+  {
+    "id": "sweet-potatoes-1-kg",
+    "name": "Sweet Potatoes",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Tubers",
+    "unit": "1 kg",
+    "price": 900,
+    "image": "images/catalog-products/sweet-potatoes-1kg.jpg"
+  },
+  {
+    "id": "packaged-chicken-1-kg",
+    "name": "Packaged Chicken",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Meat & Poultry",
+    "unit": "1 kg",
+    "price": 5800,
+    "image": "images/catalog-products/packaged-chicken-1kg.jpg"
+  },
+  {
+    "id": "chicken-drumsticks-1-kg",
+    "name": "Chicken Drumsticks",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Meat & Poultry",
+    "unit": "1 kg",
+    "price": 8000,
+    "image": "images/catalog-products/chicken-drumsticks-1kg.jpg"
+  },
+  {
+    "id": "beef-1-kg",
+    "name": "Beef",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Meat & Poultry",
+    "unit": "1 kg",
+    "price": 10000,
+    "image": "images/catalog-products/beef-1kg.jpg"
+  },
+  {
+    "id": "goat-meat-1-kg",
+    "name": "Goat Meat",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Meat & Poultry",
+    "unit": "1 kg",
+    "price": 12500,
+    "image": "images/catalog-products/goat-meat-1kg.jpg"
+  },
+  {
+    "id": "turkey-1-kg",
+    "name": "Turkey",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Meat & Poultry",
+    "unit": "1 kg",
+    "price": 7500,
+    "image": "images/catalog-products/turkey-1kg.png"
+  },
+  {
+    "id": "catfish-1-kg",
+    "name": "Catfish",
+    "brand": "Fresh Market",
+    "category": "Fresh Market",
+    "subcategory": "Fish & Seafood",
+    "unit": "1 kg",
+    "price": 5500,
+    "image": "images/catalog-products/catfish-1kg.png"
   }
 ];
