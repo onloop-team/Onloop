@@ -19,7 +19,14 @@
     />
     <link rel="icon" href="images/favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=20260810-essentials-desc" />
+    <link
+      rel="preload"
+      as="image"
+      href="images/hero-hamper.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260929-centered-hero" />
   </head>
   <body class="home-page">
     <div class="page-shell">
@@ -138,8 +145,12 @@
               <div class="hero-hamper-stage">
                 <img
                   class="hero-hamper-image"
-                  src="images/hero-hamper.png"
+                  src="images/hero-hamper.webp"
                   alt=""
+                  width="1050"
+                  height="919"
+                  decoding="async"
+                  fetchpriority="high"
                 />
               </div>
             </div>
