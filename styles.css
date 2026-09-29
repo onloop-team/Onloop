@@ -3529,13 +3529,14 @@ body.has-review-bar .back-to-top-fab {
     left: 50%;
     width: 100vw;
     max-width: 390px;
-    transform: translateX(calc(-50% - clamp(42px, 18vw, 70px)));
+    transform: translateX(-50%);
     padding-bottom: 8px;
   }
 
   .hero-hamper-image {
-    width: min(88vw, 350px);
+    width: min(84vw, 330px);
     max-height: 340px;
+    object-position: center;
   }
 
   .home-page .home-band,
